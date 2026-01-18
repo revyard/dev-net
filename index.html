@@ -52,41 +52,33 @@
         }
 
         .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 80px;
             background: var(--toggle-bg);
             border: 1px solid var(--btn-border);
             color: var(--toggle-color);
             border-radius: 50px;
-            padding: 10px 15px;
+            padding: 8px 12px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             transition: all 0.3s ease;
-            z-index: 1000;
             backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
-            gap: 8px;
-            height: 44px;
+            gap: 6px;
+            height: 36px;
             box-sizing: border-box;
         }
 
         .settings-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
             background: var(--toggle-bg);
             border: 1px solid var(--btn-border);
             color: var(--toggle-color);
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
+            width: 36px;
+            height: 36px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             transition: all 0.3s ease;
-            z-index: 1000;
             backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
@@ -106,16 +98,14 @@
             transform: translateY(-2px);
         }
 
-        .theme-icon {
-            font-size: 16px;
-        }
+
 
         body {
             font-family: Arial, sans-serif;
             max-width: 800px;
             margin: 0 auto;
-            padding: 70px 20px 20px 20px;
-            /* Added top padding for theme toggle */
+            padding: 20px;
+            /* Removed extra top padding since buttons are now in header */
             background-color: var(--bg-color);
             color: var(--text-color);
             min-height: 100vh;
@@ -123,6 +113,17 @@
             box-sizing: border-box;
             /* Include padding in height calculation */
             transition: all 0.3s ease;
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            overflow-y: scroll;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
         }
 
         .container {
@@ -135,6 +136,7 @@
             max-width: 600px;
             /* Maximum width for larger screens */
             margin: 0 auto;
+            padding-top: 70px;
         }
 
         .container h1 {
@@ -238,14 +240,89 @@
             text-align: center;
         }
 
-        .navigation {
+        /* Progress Header */
+        .progress-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--container-bg);
+            border-bottom: 1px solid var(--container-border);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .stats-left {
+            display: flex;
+            gap: 15px;
+            color: var(--text-color);
+            flex: 1;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-correct {
+            color: #4caf50;
+        }
+
+        .stat-wrong {
+            color: #f44336;
+        }
+
+        .progress-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .progress-right {
             display: flex;
             gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            /* Allow wrapping on small screens */
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .theme-icon {
+            font-size: 14px;
+        }
+
+        /* Adjust quiz container to account for fixed header */
+        #quizContainer {
+            padding-top: 70px;
+            padding-bottom: 150px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            gap: 10px;
+            padding: 15px 20px;
+            flex-wrap: nowrap;
+            /* Never wrap buttons */
             justify-content: center;
+            background: var(--container-bg);
+            border-top: 1px solid var(--container-border);
+            backdrop-filter: blur(10px);
+            z-index: 100;
             width: 100%;
+            box-sizing: border-box;
         }
 
         .next-btn,
@@ -253,8 +330,8 @@
         .menu-btn,
         .submit-btn,
         .start-btn {
-            padding: 12px 20px;
-            font-size: clamp(12px, 3.5vw, 14px);
+            padding: 12px 15px;
+            font-size: clamp(11px, 3vw, 14px);
             /* Responsive font size */
             border: 1px solid var(--btn-hover-border);
             background-color: transparent;
@@ -262,9 +339,12 @@
             border-radius: 8px;
             cursor: pointer;
             display: none;
-            min-width: 100px;
+            min-width: 80px;
             /* Minimum button width */
+            flex: 1;
+            max-width: 200px;
             text-align: center;
+            white-space: nowrap;
         }
 
         .submit-btn {
@@ -307,8 +387,8 @@
             }
 
             .navigation {
-                flex-direction: column;
-                align-items: center;
+                padding: 10px 5px;
+                gap: 5px;
             }
 
             .next-btn,
@@ -316,8 +396,9 @@
             .menu-btn,
             .submit-btn,
             .start-btn {
-                width: 100%;
-                max-width: 200px;
+                padding: 10px 8px;
+                font-size: 11px;
+                min-width: 70px;
             }
         }
 
@@ -475,13 +556,30 @@
 </head>
 
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()">
-        <span class="theme-icon">🌙</span>
-    </button>
-
-    <button class="settings-toggle" onclick="openSettings()">
-        ⚙️
-    </button>
+    <!-- Global Header -->
+    <div class="progress-header" id="globalHeader">
+        <div class="stats-left" id="quizStats" style="display: none;">
+            <div class="stat-item">
+                <span class="stat-correct">✓</span>
+                <span id="correctCount">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-wrong">✗</span>
+                <span id="wrongCount">0</span>
+            </div>
+        </div>
+        <div class="progress-center" id="quizProgress" style="display: none;">
+            <span id="questionProgress">0/100</span>
+        </div>
+        <div class="progress-right">
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="settings-toggle" onclick="openSettings()">
+                ⚙️
+            </button>
+        </div>
+    </div>
 
     <!-- Settings Modal -->
     <div class="settings-modal" id="settingsModal">
@@ -502,11 +600,23 @@
                     <div class="toggle-slider"></div>
                 </div>
             </div>
+            <div class="setting-item">
+                <span class="setting-label">Sound Effects</span>
+                <div class="toggle-switch active" id="soundToggle" onclick="toggleSetting('sound')">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+            <div class="setting-item">
+                <span class="setting-label">Vibration</span>
+                <div class="toggle-switch active" id="vibrationToggle" onclick="toggleSetting('vibration')">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="container" id="mainMenu">
-        <h1>E-Commerce Reviewer</h1>
+        <h1>Development Network - Reviewer</h1>
 
         <div id="moduleChoices">
             <button class="btn module-btn" id="module1" onclick="toggleModuleSelection(1)">M1</button>
@@ -520,11 +630,14 @@
     </div>
 
     <div class="container" id="quizContainer" style="display: none;">
+
         <div class="question" id="questionText"></div>
         <div id="questionImage"></div>
         <div id="preContent"></div>
         <div id="multipleAnswersNote"></div>
         <div id="choices"></div>
+
+        <!-- Fixed Bottom Navigation -->
         <div class="navigation">
             <button class="back-btn" onclick="previousQuestion()">Previous Question</button>
             <button class="menu-btn" onclick="showMainMenu()">Main Menu</button>
@@ -560,7 +673,6 @@
             }
         }
 
-
         // Initialize theme on page load
         document.addEventListener('DOMContentLoaded', function () {
             initializeTheme();
@@ -573,10 +685,91 @@
         let questionAnswered = false;
         let selectedAnswers = [];
 
+        // Progress tracking
+        let questionResults = {}; // Track results for each question index
+        let correctCount = 0;
+        let wrongCount = 0;
+
+        // Audio Context for sound effects
+        let audioContext = null;
+
+        // Initialize audio context on first user interaction
+        function initAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // Play correct answer sound
+        function playCorrectSound() {
+            if (!settings.sound || !audioContext) return;
+
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = 523.25; // C5
+            oscillator.type = 'sine';
+
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+
+            // Play a second note for a pleasant chord
+            const oscillator2 = audioContext.createOscillator();
+            const gainNode2 = audioContext.createGain();
+
+            oscillator2.connect(gainNode2);
+            gainNode2.connect(audioContext.destination);
+
+            oscillator2.frequency.value = 659.25; // E5
+            oscillator2.type = 'sine';
+
+            gainNode2.gain.setValueAtTime(0.2, audioContext.currentTime);
+            gainNode2.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+            oscillator2.start(audioContext.currentTime);
+            oscillator2.stop(audioContext.currentTime + 0.5);
+        }
+
+        // Play wrong answer sound
+        function playWrongSound() {
+            if (!settings.sound || !audioContext) return;
+
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.3);
+            oscillator.type = 'sawtooth';
+
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        }
+
+        // Vibrate device
+        function vibrateDevice(pattern) {
+            if (settings.vibration && 'vibrate' in navigator) {
+                navigator.vibrate(pattern);
+            }
+        }
+
         // Settings management
         let settings = {
             shuffleQuestions: false,
-            shuffleChoices: false
+            shuffleChoices: false,
+            sound: true,
+            vibration: true
         };
 
         // Multi-checkpoint selection
@@ -597,6 +790,8 @@
         function updateSettingsUI() {
             const shuffleQuestionsToggle = document.getElementById('shuffleQuestionsToggle');
             const shuffleChoicesToggle = document.getElementById('shuffleChoicesToggle');
+            const soundToggle = document.getElementById('soundToggle');
+            const vibrationToggle = document.getElementById('vibrationToggle');
 
             if (settings.shuffleQuestions) {
                 shuffleQuestionsToggle.classList.add('active');
@@ -608,6 +803,18 @@
                 shuffleChoicesToggle.classList.add('active');
             } else {
                 shuffleChoicesToggle.classList.remove('active');
+            }
+
+            if (settings.sound) {
+                soundToggle.classList.add('active');
+            } else {
+                soundToggle.classList.remove('active');
+            }
+
+            if (settings.vibration) {
+                vibrationToggle.classList.add('active');
+            } else {
+                vibrationToggle.classList.remove('active');
             }
         }
 
@@ -730,6 +937,13 @@
                 document.getElementById('mainMenu').style.display = 'none';
                 document.getElementById('quizContainer').style.display = 'flex';
 
+                // Show quiz stats in header
+                document.getElementById('quizStats').style.display = 'flex';
+                document.getElementById('quizProgress').style.display = 'block';
+
+                // Initialize audio context on first user interaction
+                initAudioContext();
+
                 displayQuestion();
             } catch (error) {
                 console.error('Error loading checkpoints:', error);
@@ -766,15 +980,35 @@
                 document.getElementById('mainMenu').style.display = 'none';
                 document.getElementById('quizContainer').style.display = 'flex';
 
+                // Show quiz stats in header
+                document.getElementById('quizStats').style.display = 'flex';
+                document.getElementById('quizProgress').style.display = 'block';
+
+                // Initialize audio context on first user interaction
+                initAudioContext();
+
                 displayQuestion();
             } catch (error) {
                 console.error('Error loading checkpoint:', error);
             }
         }
 
+        function updateProgressHeader() {
+            // Update progress counter
+            document.getElementById('questionProgress').textContent =
+                `${currentQuestionIndex + 1}/${currentQuestions.length}`;
+
+            // Update correct/wrong counts
+            document.getElementById('correctCount').textContent = correctCount;
+            document.getElementById('wrongCount').textContent = wrongCount;
+        }
+
         function displayQuestion() {
             const question = currentQuestions[currentQuestionIndex];
             document.getElementById('questionText').textContent = question.question;
+
+            // Update progress header
+            updateProgressHeader();
 
             // Handle images
             const imageContainer = document.getElementById('questionImage');
@@ -896,6 +1130,53 @@
             const buttons = document.querySelectorAll('#choices .btn');
             const correctAnswers = Array.isArray(question.answer) ? question.answer : [question.answer];
 
+            // Check if answer is correct
+            let isCorrect = false;
+
+            if (Array.isArray(question.answer)) {
+                // For multiple answer questions, ALL selected answers must be correct
+                // and ALL correct answers must be selected
+                const allSelectedCorrect = selectedAnswers.every(ans => correctAnswers.includes(ans));
+                const allCorrectSelected = correctAnswers.every(ans => selectedAnswers.includes(ans));
+                isCorrect = allSelectedCorrect && allCorrectSelected;
+            } else {
+                // For single answer questions
+                isCorrect = selectedAnswers[0] === question.answer;
+            }
+
+            // Play sound and vibrate based on result
+            if (isCorrect) {
+                playCorrectSound();
+                vibrateDevice([100]); // Single short vibration for correct
+            } else {
+                playWrongSound();
+                vibrateDevice([50, 50, 50]); // Three short vibrations for wrong
+            }
+
+            // Update question results tracking
+            if (questionResults[currentQuestionIndex] === undefined) {
+                // First time answering this question
+                if (isCorrect) {
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            } else if (questionResults[currentQuestionIndex] !== isCorrect) {
+                // Changed from correct to wrong or vice versa
+                if (isCorrect) {
+                    correctCount++;
+                    wrongCount--;
+                } else {
+                    correctCount--;
+                    wrongCount++;
+                }
+            }
+            questionResults[currentQuestionIndex] = isCorrect;
+
+
+            // Update progress header
+            updateProgressHeader();
+
             buttons.forEach(button => {
                 const buttonText = button.textContent;
                 const isCorrectAnswer = correctAnswers.includes(buttonText);
@@ -939,9 +1220,19 @@
         function showMainMenu() {
             document.getElementById('mainMenu').style.display = 'flex';
             document.getElementById('quizContainer').style.display = 'none';
+
+            // Hide quiz stats in header
+            document.getElementById('quizStats').style.display = 'none';
+            document.getElementById('quizProgress').style.display = 'none';
+
             currentCheckpoint = null;
             currentQuestions = [];
             currentQuestionIndex = 0;
+
+            // Reset progress tracking
+            questionResults = {};
+            correctCount = 0;
+            wrongCount = 0;
 
             // Reset module selections and start button
             const moduleButtons = document.querySelectorAll('.module-btn');
