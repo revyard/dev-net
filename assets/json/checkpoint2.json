@@ -192,5 +192,49 @@
       "developer.cisco.com"
     ],
     "answer": "developer.cisco.com"
+  },
+  {
+    "question": "What type of learner should take the DevNet Associate course?",
+    "choices": [
+      "anyone that does not like working in teams and is a software developer",
+      "anyone interested in network automation and programmability",
+      "only new network engineers",
+      "only new software developers"
+    ],
+    "answer": "anyone interested in network automation and programmability"
+  },
+  {
+    "question": "Which two DevNet resources are available online? (Choose two.)",
+    "choices": [
+      "Python Exchange",
+      "API Tokens",
+      "DevNet Zone",
+      "Automation Exchange",
+      "Code Exchange"
+    ],
+    "answer": [
+      "Automation Exchange",
+      "Code Exchange"
+    ]
+  },
+  {
+    "question": "What is the purpose of the Cisco DevNet Learning Labs?",
+    "choices": [
+      "They allow participants to add their own labs as long as the labs relate to any type of coding.",
+      "They allow participants to add their own Python labs.",
+      "They provide self-paced tutorials including coding.",
+      "They provide a space for game development, interaction, and learning based on coding."
+    ],
+    "answer": "They provide self-paced tutorials including coding."
+  },
+  {
+    "question": "What is a requirement when creating a Cisco DevNet account for accessing educational resources, such as Learning Labs and the DevNet Sandbox?",
+    "choices": [
+      "The account holder must share personally created code before access is allowed.",
+      "The account must contain a purchased license.",
+      "The account must be registered using a Cisco email address.",
+      "The account must be created using an existing online identity or via a new Cisco account."
+    ],
+    "answer": "The account must be created using an existing online identity or via a new Cisco account."
   }
 ]
