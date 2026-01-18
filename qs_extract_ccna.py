@@ -199,9 +199,85 @@ def extract_quiz_data(html_content):
     
     return questions
 
+def validate_questions(questions, output_file_path):
+    """Validate extracted questions (inline quality check)"""
+    import urllib.parse
+    
+    def is_valid_url(url):
+        try:
+            result = urllib.parse.urlparse(url)
+            return all([result.scheme, result.netloc])
+        except:
+            return False
+    
+    print("\n" + "=" * 60)
+    print("🔍 QUALITY VALIDATION")
+    print("=" * 60)
+    
+    errors = []
+    warnings = []
+    
+    for i, question in enumerate(questions, 1):
+        question_errors = []
+        question_warnings = []
+        
+        # Check if question has required fields
+        if 'question' not in question:
+            question_errors.append("Missing 'question' field")
+        else:
+            question_text = question['question'].strip()
+            if len(question_text) <= 5:
+                question_errors.append(f"Question too short ({len(question_text)} chars)")
+        
+        # Check choices and answers
+        choices = question.get('choices', [])
+        answer = question.get('answer')
+        question_type = question.get('type', 'regular')
+        
+        if len(choices) > 0:
+            if not answer:
+                question_errors.append("Has choices but no answer key")
+            elif answer == "Unknown":
+                question_errors.append("Answer is 'Unknown'")
+            
+            if answer and answer != "Unknown" and question_type != 'special':
+                if isinstance(answer, list):
+                    for ans in answer:
+                        if ans not in choices:
+                            question_errors.append(f"Answer not in choices")
+                else:
+                    if answer not in choices:
+                        question_errors.append(f"Answer not in choices")
+        
+        # Check image URLs
+        if 'img' in question:
+            if not is_valid_url(question['img']):
+                question_errors.append(f"Invalid image URL")
+        
+        if question_errors:
+            error_msg = f"Q{i}: {'; '.join(question_errors)}"
+            errors.append(error_msg)
+            print(f"❌ {error_msg}")
+        
+        if question_warnings:
+            warning_msg = f"Q{i}: {'; '.join(question_warnings)}"
+            warnings.append(warning_msg)
+            print(f"⚠️  {warning_msg}")
+    
+    # Summary
+    if not errors and not warnings:
+        print("✅ All validations passed!")
+    else:
+        if errors:
+            print(f"\n❌ Found {len(errors)} error(s)")
+        if warnings:
+            print(f"⚠️  Found {len(warnings)} warning(s)")
+    
+    return len(errors) == 0
+
 def main():
     if len(sys.argv) != 2:
-        print("Usage: python html_to_json_parser.py <html_file_path>")
+        print("Usage: python qs_extract_ccna.py <html_file_path>")
         sys.exit(1)
     
     html_file_path = Path(sys.argv[1])
@@ -222,14 +298,11 @@ def main():
     questions = extract_quiz_data(html_content)
     
     # Determine output file path
-    # If input is assets/html/checkpointX.html, output should be assets/json/checkpointX.json
-    input_name = html_file_path.stem  # Gets filename without extension
+    input_name = html_file_path.stem
     
     if 'html' in str(html_file_path.parent):
-        # Replace 'html' with 'json' in the path
         output_dir = Path(str(html_file_path.parent).replace('html', 'json'))
     else:
-        # Same directory as input
         output_dir = html_file_path.parent
     
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -240,11 +313,20 @@ def main():
         with open(output_file_path, 'w', encoding='utf-8') as f:
             json.dump(questions, f, indent=2, ensure_ascii=False)
         
-        print(f"Successfully extracted {len(questions)} questions")
-        print(f"Output saved to: {output_file_path}")
+        print(f"✅ Extracted {len(questions)} questions")
+        print(f"📝 Saved to: {output_file_path}")
         
     except Exception as e:
         print(f"Error writing JSON file: {e}")
+        sys.exit(1)
+    
+    # Run quality validation
+    success = validate_questions(questions, output_file_path)
+    
+    if success:
+        print(f"\n🎉 Done! {output_file_path.name}")
+    else:
+        print(f"\n⚠️  Completed with issues: {output_file_path.name}")
         sys.exit(1)
 
 if __name__ == "__main__":

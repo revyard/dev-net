@@ -132,5 +132,65 @@
       "self-paced tutorials that cover a wide range of automation and integration topics"
     ],
     "answer": "a repository of sample code written by other developers"
+  },
+  {
+    "question": "What is contained within a DevNet Sandbox?",
+    "choices": [
+      "instructor-led videos focusing on hands-on exercises",
+      "a collection of Cisco developer API documentation",
+      "a preconfigured environment already installed with Cisco platforms",
+      "a collection of self-paced tutorials using REST APIs"
+    ],
+    "answer": "a preconfigured environment already installed with Cisco platforms"
+  },
+  {
+    "question": "Which DevNet resource would a developer use if the developer is using a Cisco API and needs help understanding the error message received?",
+    "choices": [
+      "DevNet Support",
+      "Code Exchange",
+      "DevNet Sandbox",
+      "DevNet Learning Labs"
+    ],
+    "answer": "DevNet Support"
+  },
+  {
+    "question": "What is Cisco DevNet?",
+    "choices": [
+      "a developer program",
+      "a Cisco-proprietary virtual network",
+      "a vendor-neutral type of virtual networking",
+      "a way to create networks using software alone"
+    ],
+    "answer": "a developer program"
+  },
+  {
+    "question": "What is required in order to ensure that clients are able to talk to applications that are outside a local system?",
+    "choices": [
+      "a network",
+      "an application",
+      "an API",
+      "a script"
+    ],
+    "answer": "a network"
+  },
+  {
+    "question": "Which DevNet event is provided by Cisco partners and Cisco offices?",
+    "choices": [
+      "DevNet Codearama",
+      "DevNet Hackathon",
+      "DevNet Express",
+      "DevNet Learn In"
+    ],
+    "answer": "DevNet Express"
+  },
+  {
+    "question": "Which website provides the entry point for Cisco DevNet?",
+    "choices": [
+      "devnet.com",
+      "talosintelligence.com",
+      "cisco.com",
+      "developer.cisco.com"
+    ],
+    "answer": "developer.cisco.com"
   }
 ]

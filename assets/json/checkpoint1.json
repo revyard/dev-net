@@ -119,17 +119,6 @@
     "answer": "dictionary"
   },
   {
-    "question": "A student new to Python is working in the interactive interpreter mode. The student issues the command:",
-    "pre": ">>> ipAddress = {\"R1\":\"10.1.1.1\",\"R2\":\"10.2.2.1\",\"R3\":\"10.3.3.1\"}",
-    "choices": [
-      "ipAddress{‘R2’}",
-      "ipAddress[‘R2’]",
-      "ipAddress[R2]",
-      "ipAddress{“R2”}"
-    ],
-    "answer": "ipAddress[‘R2’]"
-  },
-  {
     "question": "A user issues a series of Linux commands as shown.",
     "pre": "(omitted)$ pwd\n/home/devasc/labs/ansible/backups\n(omitted)$ cd ../..",
     "choices": [
@@ -140,17 +129,6 @@
       "/home/devasc/labs/ansible"
     ],
     "answer": "/home/devasc/labs"
-  },
-  {
-    "question": "A student new to Python is working in the interactive interpreter mode. The student issues the commands:",
-    "pre": ">>> devicenames=[\"RT1\", \"RT2\", \"SW1\", \"SW2\"]\n>>> hostnames=devicenames + [\"RT3\", \"SW3\"]\n>>> del hostnames[3]\n>>> hostnames",
-    "choices": [
-      "[‘RT1’, ‘RT2’, ‘RT3’, ‘SW2, ‘SW3’]",
-      "[‘RT1’, ‘RT2’, ‘SW2’, ‘RT3’, ‘SW3’]",
-      "[‘RT1’, ‘RT2’, ‘SW1’, ‘RT3’, ‘SW3’]",
-      "[‘RT1’, ‘RT2’, ‘SW1’, ‘SW2’, ‘SW3’]"
-    ],
-    "answer": "[‘RT1’, ‘RT2’, ‘SW1’, ‘RT3’, ‘SW3’]"
   },
   {
     "question": "A student is learning Python in the interactive interpreter mode. The student issues the commands:",
@@ -187,13 +165,105 @@
     "answer": "ls -l"
   },
   {
-    "question": "A network engineer needs to review the status of all network interfaces of a server running a Linux operating system. The engineer enters the command ifconfig -a . What is the result of this command?",
+    "question": "A user issues a series of Linux commands as shown.\n(omitted)$ pwd \n/home/devasc/labs/ansible/backups \n(omitted)$ cd ../..\nWhich directory is the current directory after the cd command is entered?",
     "choices": [
-      "The host routing table will be displayed.",
-      "All active interfaces will display information.",
-      "Both active and inactive interfaces will display information.",
-      "The ARP table of the computer will be displayed."
+      "/home/devasc/labs/ansible",
+      "/home/devasc/",
+      "/home/devasc/labs",
+      "/",
+      "/home"
     ],
-    "answer": "Both active and inactive interfaces will display information."
+    "answer": "/home/devasc/labs"
+  },
+  {
+    "question": "A system administrator of a Linux server is searching the passwd file for the username taylor that appears at the beginning of the line. Which grep command should the administrator use?",
+    "choices": [
+      "grep ‘^taylor’ /etc/passwd",
+      "grep ‘.taylor’ /etc/passwd",
+      "grep ‘[taylor]’ /etc/passwd",
+      "grep taylor /etc/passwd"
+    ],
+    "answer": "grep ‘^taylor’ /etc/passwd"
+  },
+  {
+    "question": "A user issues the apt-get upgrade command to update system files in a Ubuntu Linux system and receives an error message of “permission denied.” What should the user do to complete the task?",
+    "choices": [
+      "Issue the sudo apt-get install command.",
+      "Issue the allow apt-get upgrade command.",
+      "Issue the apt-get install –allow command.",
+      "Issue the sudo apt-get upgrade command."
+    ],
+    "answer": "Issue the sudo apt-get upgrade command."
+  },
+  {
+    "question": "A student is learning Python using the interactive interpreter mode. The student issues the commands:\n>>> routers=[]\n>>> switches=[]\n>>> devices=[\\\"RT1\\\", \\\"RT2\\\", \\\"RT3\\\", SW1\\\", \\\"SW2\\\", \\\"SW3\\\"]\n>>> devices=devices + [\\\"RT4\\\", \\\"SW4\\\"]\n>>> for i in devices:\nif \\\"R\\\" in i:\nrouters.append(i)\nelse: switches.append(i)\n>>> switches\nWhat is the result?",
+    "choices": [
+      "[‘SW4’, ‘SW1’, ‘SW2’, ‘SW3’]",
+      "[‘SW1’, ‘SW2’, ‘SW3’, ‘SW4’]",
+      "[‘SW1’, ‘SW2’, ‘SW3’]",
+      "[‘SW4’, ‘SW3’, ‘SW2’, ‘SW1’]",
+      "[‘SW4’]"
+    ],
+    "answer": "[‘SW1’, ‘SW2’, ‘SW3’, ‘SW4’]"
+  },
+  {
+    "question": "Which Python programming function is used to display output?",
+    "choices": [
+      "print",
+      "if",
+      "while",
+      "for"
+    ],
+    "answer": "print"
+  },
+  {
+    "question": "A user enters the commands as shown. What is the result after the mv command is entered?\ndevasc@labvm:~/Documents$ pwd \n/home/devasc/Documents \ndevasc@labvm:~/Documents$ mv myfile.sh ../Desktop/myfile2.sh",
+    "choices": [
+      "The file myfile.sh is copied to the /home/devasc/Desktop directory and replaces the file myfile2.sh.",
+      "The file myfile.sh is copied to the /home/devasc/Desktop directory and renamed as myfile2.sh.",
+      "The file myfile.sh is moved to the /home/devasc/Desktop directory and renamed as myfile2.sh.",
+      "The file myfile.sh is copied and renamed to myfile2.sh in the current directory."
+    ],
+    "answer": "The file myfile.sh is moved to the /home/devasc/Desktop directory and renamed as myfile2.sh."
+  },
+  {
+    "question": "A user issues a Linux command and the result is shown:\ntotal 40 \ndrwxr-xr-x 2 devasc devasc 4096 Mar 30 21:25 Desktop \ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Documents \ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Downloads \ndrwxr-xr-x 5 devasc devasc 4096 Mar 30 21:21 labs \ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Music \ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Pictures \ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Public \ndrwxr-xr-x 5 devasc devasc 4096 Mar 30 21:24 snap \ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Templates \ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Videos \ndevasc@labvm:~$\nWhich Linux command is used to display the contents of the current directory as shown?",
+    "choices": [
+      "ls -l",
+      "ls -a",
+      "ls -lr",
+      "ls"
+    ],
+    "answer": "ls -l"
+  },
+  {
+    "question": "What command is used to rename a file in a Linux system?",
+    "choices": [
+      "mv",
+      "dd",
+      "cp",
+      "rm"
+    ],
+    "answer": "mv"
+  },
+  {
+    "question": "A user issues a Linux command and the result is shown.\ntotal 40\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Videos\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Templates\ndrwxr-xr-x 5 devasc devasc 4096 Mar 30 21:24 snap\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Public\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Pictures\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Music\ndrwxr-xr-x 5 devasc devasc 4096 Mar 30 21:21 labs\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Downloads\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Documents\ndrwxr-xr-x 2 devasc devasc 4096 Mar 30 21:25 Desktop\ndevasc@labvm:~$\nWhich Linux command is used to display the contents of the current directory as shown?",
+    "choices": [
+      "ln",
+      "ls -lr",
+      "ls -l",
+      "ls -a"
+    ],
+    "answer": "ls -lr"
+  },
+  {
+    "question": "A developer needs to check the version of the running Python package. Which command should the developer use?",
+    "choices": [
+      "python3 -V",
+      "python3 –v",
+      "python3 -i",
+      "python3 -q"
+    ],
+    "answer": "python3 -V"
   }
 ]

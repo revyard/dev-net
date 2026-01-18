@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[F2-FORMATIVE] Formative Assessment 2 - QuizBank Export</title>
+    <style>
+        :root {
+            --ic-brand-primary: #667eea;
+            --ic-brand-font-color-dark: #2D3B45;
+        }
+        
+        body {
+            font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #2D3B45;
+            line-height: 1.5;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .quiz-header {
+            background: white;
+            color: #2D3B45;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .quiz-header h1 {
+            margin: 0 0 8px 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .quiz-header .subtitle {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: #f7f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 10px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        
+        .course-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .course-section-title {
+            margin: 0 0 16px 0;
+            font-size: 20px;
+            color: #9C27B0;
+            border-bottom: 2px solid #E1BEE7;
+            padding-bottom: 8px;
+        }
+        
+        .quiz-section {
+            margin-bottom: 20px;
+        }
+        
+        .quiz-section-title {
+            margin: 16px 0 12px 0;
+            font-size: 16px;
+            color: #667eea;
+        }
+        
+        .display_question {
+            background: white;
+            padding: 0;
+            margin-bottom: 16px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #c7cdd1;
+        }
+        
+        .display_question .header {
+            background: #f7f9fa;
+            padding: 12px 16px;
+            border-bottom: 1px solid #c7cdd1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .question_name { font-weight: 600; color: #2D3B45; font-size: 15px; }
+        .question_points_holder { font-size: 14px; color: #73818f; }
+        .display_question .text { padding: 20px 16px; }
+        .question_text { font-size: 15px; line-height: 1.6; margin-bottom: 16px; }
+        
+        .answer-source-badge, .correct-answer-badge, .wrong-answer-badge {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        
+        .knowledge_bank-source { background: linear-gradient(135deg, #4CAF50, #45a049); color: white; }
+        .canvas-source { background: linear-gradient(135deg, #2196F3, #1976D2); color: white; }
+        .new-source { background: linear-gradient(135deg, #FF9800, #F57C00); color: white; }
+        .correct-answer-badge { background: #4CAF50 !important; color: white !important; }
+        .wrong-answer-badge { background: #ff5722 !important; color: white !important; }
+        
+        .answers { margin-top: 12px; }
+        fieldset { border: none; padding: 0; margin: 0; }
+        .answer { border-bottom: 1px solid #f0f0f0; }
+        .answer:last-child { border-bottom: none; }
+        .answer_row { display: flex; align-items: flex-start; padding: 10px 12px; }
+        .answer_input { margin-right: 10px; }
+        .answer_label { flex: 1; font-size: 14px; }
+        
+        .move, .links, .original_question_text, .screenreader-only { display: none !important; }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #73818f;
+            font-size: 13px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        @media print {
+            body { background: white; }
+            .display_question { page-break-inside: avoid; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-header">
+        <h1>📚 [F2-FORMATIVE] Formative Assessment 2</h1>
+        <div class="subtitle">[F2-FORMATIVE] Formative Assessment 2: 2TSY2526_IT0123_TW34-4</div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Questions</div>
+                <div class="stat-value">14</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">✅ Correct</div>
+                <div class="stat-value">14</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🚫 Wrong</div>
+                <div class="stat-value">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">✨ New</div>
+                <div class="stat-value">0</div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 16px; padding: 12px; background: #e8f4fd; border-radius: 6px; border-left: 3px solid #2196F3;">
+            <div style="font-size: 11px; color: #1976D2; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 4px;">
+                Export Filter Applied
+            </div>
+            <div style="font-size: 13px; color: #1565C0; font-weight: 500;">
+                ✅ Correct
+            </div>
+        </div>
+    
+    </div>
+    
+    <div class="questions-container">
+        <div class="display_question question multiple_choice_question" id="question_21687765">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21687765" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016188</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;strong&gt;What is the purpose of Cisco DevNet?&lt;/strong&gt;</textarea>
+      </div>
+      <div id="question_21687765_question_text" class="question_text user_content enhanced">
+          <strong>What is the purpose of Cisco DevNet?</strong>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687765" value="7042" id="question_21687765_answer_7042" aria-labelledby="question_21687765_answer_7042_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687765_answer_7042_label">
+        to teach specific coding courses such as advanced Python and implementing REST APIs
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687765" value="8295" id="question_21687765_answer_8295" aria-labelledby="question_21687765_answer_8295_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687765_answer_8295_label">
+        to be the central resource for advanced software developers and the use of Cisco APIs
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687765" value="6268" id="question_21687765_answer_6268" aria-labelledby="question_21687765_answer_6268_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687765_answer_6268_label">
+        to be the central resource for everything about networking at Cisco
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687765" value="2144" id="question_21687765_answer_2144" aria-labelledby="question_21687765_answer_2144_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687765_answer_2144_label">
+        to teach everyone about the different Cisco API offerings and how to use them
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21687767">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21687767" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016195</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;p&gt;&lt;strong&gt;Which technology trend enables an industry shift towards automation, applications, and integrations?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</textarea>
+      </div>
+      <div id="question_21687767_question_text" class="question_text user_content enhanced">
+          <p><strong>Which technology trend enables an industry shift towards automation, applications, and integrations?</strong></p>
+<p>&nbsp;</p>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687767" value="6520" id="question_21687767_answer_6520" aria-labelledby="question_21687767_answer_6520_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687767_answer_6520_label">
+        smaller and faster CPUs
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687767" value="479" id="question_21687767_answer_479" aria-labelledby="question_21687767_answer_479_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687767_answer_479_label">
+        increased storage and RAM
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687767" value="5137" id="question_21687767_answer_5137" aria-labelledby="question_21687767_answer_5137_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687767_answer_5137_label">
+        increased intenet connection bandwidth
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687767" value="9179" id="question_21687767_answer_9179" aria-labelledby="question_21687767_answer_9179_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687767_answer_9179_label">
+        advanced API capabilities
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21687768">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21687768" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016200</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;strong&gt;Which link is used from the Cisco DevNet Learning Labs to access the largest collections of labs?&lt;/strong&gt;</textarea>
+      </div>
+      <div id="question_21687768_question_text" class="question_text user_content enhanced">
+          <strong>Which link is used from the Cisco DevNet Learning Labs to access the largest collections of labs?</strong>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687768" value="4749" id="question_21687768_answer_4749" aria-labelledby="question_21687768_answer_4749_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687768_answer_4749_label">
+        Bookends
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687768" value="5328" id="question_21687768_answer_5328" aria-labelledby="question_21687768_answer_5328_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687768_answer_5328_label">
+        Modules
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687768" value="2282" id="question_21687768_answer_2282" aria-labelledby="question_21687768_answer_2282_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687768_answer_2282_label">
+        Tracks
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687768" value="280" id="question_21687768_answer_280" aria-labelledby="question_21687768_answer_280_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687768_answer_280_label">
+        Sections
+      </div>
+    </label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21687769">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21687769" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016201</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;strong&gt;Which Cisco DevNet online resource provides use cases for network automation, including listing data and activating policies across domains?&lt;/strong&gt;</textarea>
+      </div>
+      <div id="question_21687769_question_text" class="question_text user_content enhanced">
+          <strong>Which Cisco DevNet online resource provides use cases for network automation, including listing data and activating policies across domains?</strong>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687769" value="663" id="question_21687769_answer_663" aria-labelledby="question_21687769_answer_663_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687769_answer_663_label">
+        DevNet Learning Labs
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687769" value="9399" id="question_21687769_answer_9399" aria-labelledby="question_21687769_answer_9399_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687769_answer_9399_label">
+        DevNet Sandbox
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687769" value="3987" id="question_21687769_answer_3987" aria-labelledby="question_21687769_answer_3987_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687769_answer_3987_label">
+        Code Exchange
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21687769" value="5631" id="question_21687769_answer_5631" aria-labelledby="question_21687769_answer_5631_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21687769_answer_5631_label">
+        Automation Exchange
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21771365">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21771365" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016186</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;p&gt;&lt;strong&gt;What is network programmability?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</textarea>
+      </div>
+      <div id="question_21771365_question_text" class="question_text user_content enhanced">
+          <p><strong>What is network programmability?</strong></p>
+<p>&nbsp;</p>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771365" value="4496" id="question_21771365_answer_4496" aria-labelledby="question_21771365_answer_4496_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771365_answer_4496_label">
+        the ability to program network devices using repettive manual configuration via a terminal and command sets
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771365" value="5953" id="question_21771365_answer_5953" aria-labelledby="question_21771365_answer_5953_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771365_answer_5953_label">
+        the ability to configure virtualized networks and deploy virtualized services in real time
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771365" value="1089" id="question_21771365_answer_1089" aria-labelledby="question_21771365_answer_1089_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771365_answer_1089_label">
+        the ability to configure, monitor, and react to events in the network in real time
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771365" value="8966" id="question_21771365_answer_8966" aria-labelledby="question_21771365_answer_8966_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771365_answer_8966_label">
+        the ability to easily monitor network devices using traditional network protocols
+      </div>
+    </label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21771366">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21771366" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016193</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;strong&gt;Which Cisco DevNet developer support option provides 1-on-1 support to the members of the Solution Partner program?&lt;/strong&gt;</textarea>
+      </div>
+      <div id="question_21771366_question_text" class="question_text user_content enhanced">
+          <strong>Which Cisco DevNet developer support option provides 1-on-1 support to the members of the Solution Partner program?</strong>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771366" value="8007" id="question_21771366_answer_8007" aria-labelledby="question_21771366_answer_8007_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771366_answer_8007_label">
+        community forum
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771366" value="7592" id="question_21771366_answer_7592" aria-labelledby="question_21771366_answer_7592_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771366_answer_7592_label">
+        knowledge base
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771366" value="7318" id="question_21771366_answer_7318" aria-labelledby="question_21771366_answer_7318_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771366_answer_7318_label">
+        case-based ticket
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771366" value="9463" id="question_21771366_answer_9463" aria-labelledby="question_21771366_answer_9463_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771366_answer_9463_label">
+        chat with DevNet
+      </div>
+    </label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21771367">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21771367" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016211</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;p&gt;&lt;strong&gt;What is contained within a DevNet Sandbox?&lt;/strong&gt;&lt;/p&gt;
+&lt;div id="8decc3ee-13f1-4517-bdcd-ea65181f4c67" data-aaad="true" data-aa-adunit="/339474670/ITExamAnswers/InContent" data-status="rendered" data-aa-device="[&amp;quot;desktop&amp;quot;,&amp;quot;tablet&amp;quot;,&amp;quot;mobile&amp;quot;]" data-aa-sizes="[[728,90],[300,250],[336,280]]" data-aa-lazy-loaded="false" data-aa-refresh-viewable="30" data-google-query-id="CO2CzPuz84MDFWeQ6QUdlM8DXg"&gt;
+&lt;div id="google_ads_iframe_/339474670,22474720881/ITExamAnswers/InContent_0__container__"&gt;&lt;/div&gt;
+&lt;/div&gt;</textarea>
+      </div>
+      <div id="question_21771367_question_text" class="question_text user_content enhanced">
+          <p><strong>What is contained within a DevNet Sandbox?</strong></p>
+<div id="8decc3ee-13f1-4517-bdcd-ea65181f4c67" data-aaad="true" data-aa-adunit="/339474670/ITExamAnswers/InContent" data-status="rendered" data-aa-device="[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]" data-aa-sizes="[[728,90],[300,250],[336,280]]" data-aa-lazy-loaded="false" data-aa-refresh-viewable="30" data-google-query-id="CO2CzPuz84MDFWeQ6QUdlM8DXg">
+<div id="google_ads_iframe_/339474670,22474720881/ITExamAnswers/InContent_0__container__"></div>
+</div>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771367" value="7404" id="question_21771367_answer_7404" aria-labelledby="question_21771367_answer_7404_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771367_answer_7404_label">
+        instructor-led videos focusing on hands-on exercises
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771367" value="266" id="question_21771367_answer_266" aria-labelledby="question_21771367_answer_266_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771367_answer_266_label">
+        a collection of Cisco developer API documentation
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771367" value="1964" id="question_21771367_answer_1964" aria-labelledby="question_21771367_answer_1964_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771367_answer_1964_label">
+        a preconfigured environment already installed with Cisco platforms
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771367" value="9909" id="question_21771367_answer_9909" aria-labelledby="question_21771367_answer_9909_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771367_answer_9909_label">
+        a collection of self-paced tutorials using REST APIs
+      </div>
+    </label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21771368">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21771368" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016215</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;strong&gt;Which DevNet resource would a developer use if the developer is using a Cisco API and needs help understanding the error message received?&lt;/strong&gt;</textarea>
+      </div>
+      <div id="question_21771368_question_text" class="question_text user_content enhanced">
+          <strong>Which DevNet resource would a developer use if the developer is using a Cisco API and needs help understanding the error message received?</strong>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771368" value="9487" id="question_21771368_answer_9487" aria-labelledby="question_21771368_answer_9487_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771368_answer_9487_label">
+        DevNet Support
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771368" value="5811" id="question_21771368_answer_5811" aria-labelledby="question_21771368_answer_5811_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771368_answer_5811_label">
+        Code Exchange
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771368" value="9781" id="question_21771368_answer_9781" aria-labelledby="question_21771368_answer_9781_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771368_answer_9781_label">
+        DevNet Sandbox
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771368" value="840" id="question_21771368_answer_840" aria-labelledby="question_21771368_answer_840_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771368_answer_840_label">
+        DevNet Learning Labs
+      </div>
+    </label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21771369">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21771369" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016217</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;strong&gt;What is Cisco DevNet?&lt;/strong&gt;</textarea>
+      </div>
+      <div id="question_21771369_question_text" class="question_text user_content enhanced">
+          <strong>What is Cisco DevNet?</strong>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771369" value="1667" id="question_21771369_answer_1667" aria-labelledby="question_21771369_answer_1667_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771369_answer_1667_label">
+        a developer program
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771369" value="2785" id="question_21771369_answer_2785" aria-labelledby="question_21771369_answer_2785_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771369_answer_2785_label">
+        a Cisco-proprietary virtual network
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771369" value="6338" id="question_21771369_answer_6338" aria-labelledby="question_21771369_answer_6338_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771369_answer_6338_label">
+        a vendor-neutral type of virtual networking
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771369" value="2428" id="question_21771369_answer_2428" aria-labelledby="question_21771369_answer_2428_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771369_answer_2428_label">
+        a way to create networks using software alone
+      </div>
+    </label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21771370">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21771370" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016218</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;p&gt;&lt;strong&gt;What is required in order to ensure that clients are able to talk to applications that are outside a local system?&lt;/strong&gt;&lt;/p&gt;
+&lt;div id="5de342e6-c5f4-4e14-b9ef-b28805858dce" data-aaad="true" data-aa-adunit="/339474670/ITExamAnswers/InContent" data-status="rendered" data-aa-device="[&amp;quot;desktop&amp;quot;,&amp;quot;tablet&amp;quot;,&amp;quot;mobile&amp;quot;]" data-aa-sizes="[[728,90],[300,250],[336,280]]" data-aa-lazy-loaded="false" data-aa-refresh-viewable="30" data-google-query-id="CL2uo5K084MDFQTsvQodM-sHnQ"&gt;
+&lt;div id="google_ads_iframe_/339474670,22474720881/ITExamAnswers/InContent_1__container__"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</textarea>
+      </div>
+      <div id="question_21771370_question_text" class="question_text user_content enhanced">
+          <p><strong>What is required in order to ensure that clients are able to talk to applications that are outside a local system?</strong></p>
+<div id="5de342e6-c5f4-4e14-b9ef-b28805858dce" data-aaad="true" data-aa-adunit="/339474670/ITExamAnswers/InContent" data-status="rendered" data-aa-device="[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]" data-aa-sizes="[[728,90],[300,250],[336,280]]" data-aa-lazy-loaded="false" data-aa-refresh-viewable="30" data-google-query-id="CL2uo5K084MDFQTsvQodM-sHnQ">
+<div id="google_ads_iframe_/339474670,22474720881/ITExamAnswers/InContent_1__container__"></div>
+</div>
+<p>&nbsp;</p>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771370" value="4832" id="question_21771370_answer_4832" aria-labelledby="question_21771370_answer_4832_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771370_answer_4832_label">
+        a network
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771370" value="6106" id="question_21771370_answer_6106" aria-labelledby="question_21771370_answer_6106_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771370_answer_6106_label">
+        an application
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771370" value="7555" id="question_21771370_answer_7555" aria-labelledby="question_21771370_answer_7555_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771370_answer_7555_label">
+        an API
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771370" value="2029" id="question_21771370_answer_2029" aria-labelledby="question_21771370_answer_2029_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771370_answer_2029_label">
+        a script
+      </div>
+    </label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21771387">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21771387" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016192</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;strong&gt;What is the contracted response time after a developer opens a case-based ticket with the DevNet support service?&lt;/strong&gt;</textarea>
+      </div>
+      <div id="question_21771387_question_text" class="question_text user_content enhanced">
+          <strong>What is the contracted response time after a developer opens a case-based ticket with the DevNet support service?</strong>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771387" value="94" id="question_21771387_answer_94" aria-labelledby="question_21771387_answer_94_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771387_answer_94_label">
+        one business day
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771387" value="9626" id="question_21771387_answer_9626" aria-labelledby="question_21771387_answer_9626_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771387_answer_9626_label">
+        five business days
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771387" value="1581" id="question_21771387_answer_1581" aria-labelledby="question_21771387_answer_1581_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771387_answer_1581_label">
+        one hour
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771387" value="8953" id="question_21771387_answer_8953" aria-labelledby="question_21771387_answer_8953_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771387_answer_8953_label">
+        one week
+      </div>
+    </label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21771389">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21771389" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016224</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;strong&gt;Which DevNet event is provided by Cisco partners and Cisco offices?&lt;/strong&gt;</textarea>
+      </div>
+      <div id="question_21771389_question_text" class="question_text user_content enhanced">
+          <strong>Which DevNet event is provided by Cisco partners and Cisco offices?</strong>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771389" value="9819" id="question_21771389_answer_9819" aria-labelledby="question_21771389_answer_9819_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771389_answer_9819_label">
+        DevNet Codearama
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771389" value="7606" id="question_21771389_answer_7606" aria-labelledby="question_21771389_answer_7606_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771389_answer_7606_label">
+        DevNet Hackathon
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771389" value="4119" id="question_21771389_answer_4119" aria-labelledby="question_21771389_answer_4119_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771389_answer_4119_label">
+        DevNet Express
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771389" value="8783" id="question_21771389_answer_8783" aria-labelledby="question_21771389_answer_8783_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771389_answer_8783_label">
+        DevNet Learn In
+      </div>
+    </label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question answered" id="question_21771390">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21771390" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016225</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;p&gt;&lt;strong&gt;Which website provides the entry point for Cisco DevNet?&lt;/strong&gt;&lt;/p&gt;
+&lt;div id="3bcae0bf-cbba-47f7-8cc9-d4d29a6b836b" data-aaad="true" data-aa-adunit="/339474670/ITExamAnswers/InContent" data-status="rendered" data-aa-device="[&amp;quot;desktop&amp;quot;,&amp;quot;tablet&amp;quot;,&amp;quot;mobile&amp;quot;]" data-aa-sizes="[[728,90],[300,250],[336,280]]" data-aa-lazy-loaded="false" data-aa-refresh-viewable="30" data-google-query-id="CI62jt2084MDFWOR6QUdULAN7g"&gt;
+&lt;div id="google_ads_iframe_/339474670,22474720881/ITExamAnswers/InContent_2__container__"&gt;&lt;/div&gt;
+&lt;/div&gt;</textarea>
+      </div>
+      <div id="question_21771390_question_text" class="question_text user_content enhanced">
+          <p><strong>Which website provides the entry point for Cisco DevNet?</strong></p>
+<div id="3bcae0bf-cbba-47f7-8cc9-d4d29a6b836b" data-aaad="true" data-aa-adunit="/339474670/ITExamAnswers/InContent" data-status="rendered" data-aa-device="[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]" data-aa-sizes="[[728,90],[300,250],[336,280]]" data-aa-lazy-loaded="false" data-aa-refresh-viewable="30" data-google-query-id="CI62jt2084MDFWOR6QUdULAN7g">
+<div id="google_ads_iframe_/339474670,22474720881/ITExamAnswers/InContent_2__container__"></div>
+</div>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771390" value="7798" id="question_21771390_answer_7798" aria-labelledby="question_21771390_answer_7798_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771390_answer_7798_label">
+        devnet.com
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771390" value="9541" id="question_21771390_answer_9541" aria-labelledby="question_21771390_answer_9541_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771390_answer_9541_label">
+        talosintelligence.com
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771390" value="8878" id="question_21771390_answer_8878" aria-labelledby="question_21771390_answer_8878_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771390_answer_8878_label">
+        cisco.com
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21771390" value="3813" id="question_21771390_answer_3813" aria-labelledby="question_21771390_answer_3813_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21771390_answer_3813_label">
+        developer.cisco.com
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+<div class="display_question question multiple_choice_question" id="question_21821434">
+    
+<div class="move">
+  <a tabindex="0" class="draggable-handle" role="button">
+    <i class="icon-drag-handle">
+      <span class="screenreader-only">Move To...</span>
+      <span class="accessibility-warning screenreader-only">
+        This element is a more accessible alternative to drag &amp; drop reordering. Press Enter or Space to move this question.
+      </span>
+    </i>
+  </a>
+</div>
+
+
+    <div class="header">
+      <span class="name question_name" role="heading" aria-level="2">Question</span>
+      <span class="question_points_holder knowledge-bank-answer" style=""><span class="answer-source">[KNOWLEDGE_BANK]</span> 1 pts (100% confidence)</span>
+    </div>
+      <div class="links" style="display: none;">
+        <a href="#" class="edit_question_link no-hover" title="Edit this Question"><i class="icon-edit standalone-icon"><span class="screenreader-only">Edit this Question</span></i></a>
+          <a href="#" class="delete_question_link no-hover" title="Delete this Question"><i class="icon-end standalone-icon"><span class="screenreader-only">Delete this Question</span></i></a>
+      </div>
+    <div style="display: none;">
+      <span class="regrade_option"></span>
+      <span class="regrade_disabled">0</span>
+      <span class="question_type">multiple_choice_question</span>
+      <span class="answer_selection_type"></span>
+        <a href="/courses/107569/quizzes/1545640/questions/21821434" class="update_question_url">&nbsp;</a>
+      <span class="assessment_question_id">35016198</span>
+    </div>
+    <div class="text">
+      <div class="original_question_text" style="display: none;">
+        <textarea disabled="" style="display: none;" name="text_after_answers" class="textarea_text_after_answers"></textarea>
+        <textarea disabled="" style="display: none;" name="question_text" class="textarea_question_text">&lt;strong&gt;What resources are available in the Cisco DevNet sandboxes?&lt;/strong&gt;</textarea>
+      </div>
+      <div id="question_21821434_question_text" class="question_text user_content enhanced">
+          <strong>What resources are available in the Cisco DevNet sandboxes?</strong>
+      <div class="answer-source-badge knowledge_bank-source" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; margin-left: 8px; vertical-align: middle;"><span class="badge-icon">🏦</span><span class="badge-text">Knowledge Bank</span></div></div>
+      <div class="answers">
+              <fieldset>
+                <legend class="screenreader-only">
+                  Group of answer choices
+                </legend>
+                
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21821434" value="3935" id="question_21821434_answer_3935" aria-labelledby="question_21821434_answer_3935_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21821434_answer_3935_label">
+        a repository of sample code writen by developers
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21821434" value="3530" id="question_21821434_answer_3530" aria-labelledby="question_21821434_answer_3530_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21821434_answer_3530_label">
+        support for developer-related issues through the use of forums and live chats
+      </div>
+    </label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21821434" value="486" id="question_21821434_answer_486" aria-labelledby="question_21821434_answer_486_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21821434_answer_486_label">
+        production-like development and code testing environments
+      </div>
+    <span class="correct-answer-badge" style="display: inline-flex; align-items: center; gap: 4px; background: rgb(76, 175, 80); color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: bold; margin-left: 6px; opacity: 0.9;"><span class="badge-icon">✅</span><span class="badge-text">Correct</span></span></label>
+</div>
+
+<div class="answer">
+    <label class="answer_row user_content enhanced">
+      <span class="answer_input">
+          <input type="radio" class="question_input" name="question_21821434" value="7818" id="question_21821434_answer_7818" aria-labelledby="question_21821434_answer_7818_label" aria-label="">
+      </span>
+      <div class="answer_label" id="question_21821434_answer_7818_label">
+        self-paced tutorials that cover a wide range of automation and integration topics
+      </div>
+    </label>
+</div>
+
+              </fieldset>
+      </div>
+      <div class="after_answers">
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+
+    </div>
+    
+    <div class="footer">
+        <strong>Generated by QuizBank</strong><br>
+        1/18/2026, 7:07:29 PM
+    </div>
+</body>
+</html>
