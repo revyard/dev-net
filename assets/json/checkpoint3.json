@@ -1,0 +1,452 @@
+[
+    {
+        "question": "Which of the following is a python data type?",
+        "choices": [
+            "ICMP",
+            "GET",
+            "Integer",
+            "HTML"
+        ],
+        "answer": "Integer"
+    },
+    {
+        "question": "Python is considered a good starting language because:",
+        "choices": [
+            "It is easy to learn, use, and install",
+            "It only works on windows",
+            "It is expensive to use",
+            "It is complex and detailed"
+        ],
+        "answer": "It is easy to learn, use, and install"
+    },
+    {
+        "question": "Which of the following is included in the devnet home page?",
+        "choices": [
+            "Cisco router hardware pricing",
+            "Linux only guides",
+            "Start now, learning tracks, video courses, sandboxes, code exchange",
+            "Only firmware downloads"
+        ],
+        "answer": "Start now, learning tracks, video courses, sandboxes, code exchange"
+    },
+    {
+        "question": "Which devnet exchange has over 1,500 solutions?",
+        "choices": [
+            "Code exchange",
+            "Automation exchange",
+            "Ecosystem exchange",
+            "Sandbox"
+        ],
+        "answer": "Ecosystem exchange"
+    },
+    {
+        "question": "Webex teams installation is part of which lab?",
+        "choices": [
+            "Linux unhatched",
+            "Virtual lab environment",
+            "Python essentials",
+            "Github setup"
+        ],
+        "answer": "Virtual lab environment"
+    },
+    {
+        "question": "Devnet learning labs include tutorials on:",
+        "choices": [
+            "Video gaming",
+            "Networking, iot, python, rest apis",
+            "Hardware assembly",
+            "Microsoft office"
+        ],
+        "answer": "Networking, iot, python, rest apis"
+    },
+    {
+        "question": "Linux is most commonly used in:",
+        "choices": [
+            "Gaming consoles only",
+            "Social media apps",
+            "Only windows-based systems",
+            "Servers, iot devices, smartphones"
+        ],
+        "answer": "Servers, iot devices, smartphones"
+    },
+    {
+        "question": "Which lab includes system administration tasks?",
+        "choices": [
+            "Linux review lab",
+            "Api lab",
+            "Network lab",
+            "Python lab"
+        ],
+        "answer": "Linux review lab"
+    },
+    {
+        "question": "A developer can access devnet forums by visiting:",
+        "choices": [
+            "facebook.com/cisco",
+            "dockerhub.com/cisco",
+            "github.com/devnetcommunity",
+            "devnetsupport.cisco.com"
+        ],
+        "answer": "devnetsupport.cisco.com"
+    },
+    {
+        "question": "Which of the following is not part of devnet developer support?",
+        "choices": [
+            "Packet tracer",
+            "Knowledge base",
+            "Support case",
+            "Forums"
+        ],
+        "answer": "Packet tracer"
+    },
+    {
+        "question": "Which linux command modifies file permissions?",
+        "choices": [
+            "pwd",
+            "mkdir",
+            "ps",
+            "chmod"
+        ],
+        "answer": "chmod"
+    },
+    {
+        "question": "Which cisco course is recommended for linux beginners?",
+        "choices": [
+            "Netacad advanced",
+            "Linux unhatched",
+            "Api explorer",
+            "Python essentials"
+        ],
+        "answer": "Linux unhatched"
+    },
+    {
+        "question": "A VM is also known as a:",
+        "choices": [
+            "Guest",
+            "Server",
+            "Container",
+            "Sandbox"
+        ],
+        "answer": "Guest"
+    },
+    {
+        "question": "DevNet learning Labs allows you to:",
+        "choices": [
+            "Order apis",
+            "Play simulation games",
+            "Set up development environments and practice coding",
+            "Buy cisco hardware"
+        ],
+        "answer": "Set up development environments and practice coding"
+    },
+    {
+        "question": "Which linux command is used to change directories?",
+        "choices": [
+            "ls",
+            "cd",
+            "ps",
+            "chmod"
+        ],
+        "answer": "cd"
+    },
+    {
+        "question": "Which devnet resource is a repository of sample code?",
+        "choices": [
+            "Automation exchange",
+            "Code exchange",
+            "Ecosystem exchange",
+            "Learning labs"
+        ],
+        "answer": "Code exchange"
+    },
+    {
+        "question": "Which keyword is used to define a function in python?",
+        "choices": [
+            "return",
+            "def",
+            "func",
+            "method"
+        ],
+        "answer": "def"
+    },
+    {
+        "question": "Which python keyword ends a loop early?",
+        "choices": [
+            "stop",
+            "exit",
+            "break",
+            "end"
+        ],
+        "answer": "break"
+    },
+    {
+        "question": "What symbol is used to define a dictionary in Python?",
+        "choices": [
+            "<>",
+            "()",
+            "{}",
+            "[]"
+        ],
+        "answer": "{}"
+    },
+    {
+        "question": "The purpose of devnet code exchange is:",
+        "choices": [
+            "To configure routers",
+            "To run containers",
+            "To download IOS images",
+            "To provide categorized sample code and tools"
+        ],
+        "answer": "To provide categorized sample code and tools"
+    },
+    {
+        "question": "Which module helps determine readiness for the DEVASC course:",
+        "choices": [
+            "Network automation",
+            "Course introduction",
+            "Api programming",
+            "DevOps"
+        ],
+        "answer": "Course introduction"
+    },
+    {
+        "question": "Which of the following is not a feature of devnet?",
+        "choices": [
+            "Sandboxes",
+            "Hardware simulation software",
+            "Learning labs",
+            "Code exchange"
+        ],
+        "answer": "Hardware simulation software"
+    },
+    {
+        "question": "Which module is specficilly a \"Course Introduction\"?",
+        "choices": [
+            "Module 1",
+            "Module 2",
+            "Module 5",
+            "Module 3"
+        ],
+        "answer": "Module 1"
+    },
+    {
+        "question": "Which of these is an integrated development environment (IDE) mentioned?",
+        "choices": [
+            "Chrome",
+            "VS Code",
+            "Excel",
+            "Word"
+        ],
+        "answer": "VS Code"
+    },
+    {
+        "question": "DevNet forums are primarily for?",
+        "choices": [
+            "Buying cisco licenses",
+            "Developer community collaboration and support",
+            "Selling routers",
+            "File hosting"
+        ],
+        "answer": "Developer community collaboration and support"
+    },
+    {
+        "question": "Which devnet exchange gives categorized repositories of tools?",
+        "choices": [
+            "Knowledge base",
+            "Ecosystem exchange",
+            "Automation exchange",
+            "Code exchange"
+        ],
+        "answer": "Code exchange"
+    },
+    {
+        "question": "The DEVASC course prepares learners for:",
+        "choices": [
+            "Network automation and programmatically",
+            "Cloud gaming",
+            "Mobile app development",
+            "Basic pc repair"
+        ],
+        "answer": "Network automation and programmatically"
+    },
+    {
+        "question": "Python is described as:",
+        "choices": [
+            "Fee, open, and multiplatform",
+            "Only used for gaming",
+            "Only used for mobile apps",
+            "A proprietary language"
+        ],
+        "answer": "Fee, open, and multiplatform"
+    },
+    {
+        "question": "Which devnet resource provides preconfigured environments with cisco platforms?",
+        "choices": [
+            "Code exchange",
+            "Ecosystem exchange",
+            "Devnet sandbox",
+            "Github"
+        ],
+        "answer": "Devnet sandbox"
+    },
+    {
+        "question": "What is the purpose of devnet sandboxes?",
+        "choices": [
+            "Provide hands on exploration of software and apis",
+            "Vrtualize video games",
+            "Sell cisco devices",
+            "Build physical networking labs"
+        ],
+        "answer": "Provide hands on exploration of software and apis"
+    },
+    {
+        "question": "The physical computer that hosts a VM is often referred to as:",
+        "choices": [
+            "Host",
+            "Client",
+            "Server",
+            "Guest"
+        ],
+        "answer": "Host"
+    },
+    {
+        "question": "Which python function opens a file?",
+        "choices": [
+            "import()",
+            "open()",
+            "get()",
+            "load()"
+        ],
+        "answer": "open()"
+    },
+    {
+        "question": "Which devnet feature helps practice tasks locally?",
+        "choices": [
+            "Devnet learning labs",
+            "Automation exchange",
+            "Ecosystem exchange",
+            "Devnet sandbox"
+        ],
+        "answer": "Devnet learning labs"
+    },
+    {
+        "question": "Devnet exchange that uses github api is:",
+        "choices": [
+            "Learning labs",
+            "Ecosystem exchange",
+            "Code exchange",
+            "Automation exchange"
+        ],
+        "answer": "Code exchange"
+    },
+    {
+        "question": "A developer can troubleshoot api issues in devnet by:",
+        "choices": [
+            "Buying a cisco router",
+            "Reading only linux manuals",
+            "Installing windows updates",
+            "Using devnet developer support"
+        ],
+        "answer": "Using devnet developer support"
+    },
+    {
+        "question": "Which online resources provides api documentation for developers?",
+        "choices": [
+            "Devnet TV",
+            "Cisco Press",
+            "Webex teams",
+            "DevNet home page at developer.cisco.com"
+        ],
+        "answer": "DevNet home page at developer.cisco.com"
+    },
+    {
+        "question": "What is the primary objective of module 2?",
+        "choices": [
+            "Implement a development enviroment using devnet resources",
+            "Learn python programming",
+            "Configure cisco routers manually",
+            "Review networking protocols"
+        ],
+        "answer": "Implement a development enviroment using devnet resources"
+    },
+    {
+        "question": "What is cisco devnet?",
+        "choices": [
+            "A new cisco hardware line",
+            "A cloud-only networking service",
+            "An integrated developer program with tools, sandboxes, and community",
+            "A social networking platform"
+        ],
+        "answer": "An integrated developer program with tools, sandboxes, and community"
+    },
+    {
+        "question": "Which command is used to create an empty file in Linux?",
+        "choices": [
+            "cat",
+            "ls",
+            "mkdir",
+            "touch"
+        ],
+        "answer": "touch"
+    },
+    {
+        "question": "What should you do if you cannot complete python review lab?",
+        "choices": [
+            "Focus only on Linux",
+            "Take python essentials",
+            "Skip python labs",
+            "Drop the course"
+        ],
+        "answer": "Take python essentials"
+    },
+    {
+        "question": "Devnet developer support provides help for:",
+        "choices": [
+            "Gaming configurations",
+            "Consumer hardware troubleshooting",
+            "Windows-only issues",
+            "API integrations, connections, and developer use cases"
+        ],
+        "answer": "API integrations, connections, and developer use cases"
+    },
+    {
+        "question": "Devnet developer program integrates which of the following?",
+        "choices": [
+            "Cisco router sales",
+            "Linux-only training",
+            "Virtual gaming environments",
+            "Website, tools, sandboxes, forums, documentation"
+        ],
+        "answer": "Website, tools, sandboxes, forums, documentation"
+    },
+    {
+        "question": "Which of these is a common use of linux?",
+        "choices": [
+            "Only desktop PCs",
+            "Web browsing",
+            "Iot devices and servers",
+            "Only mobile gaming"
+        ],
+        "answer": "Iot devices and servers"
+    },
+    {
+        "question": "Which devnet exchange provides solutions across geographies and industries?",
+        "choices": [
+            "Automation exchange",
+            "Code exchange",
+            "Community exchange",
+            "Ecosystem exchange"
+        ],
+        "answer": "Ecosystem exchange"
+    },
+    {
+        "question": "Which devnet lab activity is included in Module 2?",
+        "choices": [
+            "Linux review lab",
+            "Python review lab",
+            "Explore devnet resources",
+            "Install webex teams"
+        ],
+        "answer": "Explore devnet resources"
+    }
+]
