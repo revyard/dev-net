@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Network - Reviewer</title>
+    <style>
+        :root {
+            /* Dark mode colors (default) */
+            --bg-color: #0a092d;
+            --text-color: #f6f7fb;
+            --container-bg: rgba(255, 255, 255, 0.05);
+            --container-border: rgba(255, 255, 255, 0.1);
+            --btn-border: #8a98fe;
+            --btn-hover-bg: rgba(66, 85, 255, 0.1);
+            --btn-hover-border: #a5b0ff;
+            --correct-bg: rgba(76, 175, 80, 0.3);
+            --incorrect-bg: rgba(244, 67, 54, 0.3);
+            --selected-bg: rgba(33, 150, 243, 0.3);
+            --selected-border: #2196f3;
+            --toggle-bg: rgba(255, 255, 255, 0.1);
+            --toggle-color: #f6f7fb;
+        }
+
+        [data-theme="light"] {
+            /* Light mode colors - High contrast */
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --container-bg: rgba(240, 240, 240, 0.98);
+            --container-border: rgba(0, 0, 0, 0.25);
+            --btn-border: #1a365d;
+            --btn-hover-bg: rgba(26, 54, 93, 0.15);
+            --btn-hover-border: #0f172a;
+            --correct-bg: rgba(21, 128, 61, 0.2);
+            --incorrect-bg: rgba(220, 38, 38, 0.2);
+            --selected-bg: rgba(37, 99, 235, 0.2);
+            --selected-border: #2563eb;
+            --toggle-bg: rgba(0, 0, 0, 0.12);
+            --toggle-color: #000000;
+        }
+
+        /* Ensure all text elements use the CSS variable */
+        [data-theme="light"] .question,
+        [data-theme="light"] .navigation button,
+        [data-theme="light"] .back-btn,
+        [data-theme="light"] .menu-btn,
+        [data-theme="light"] .next-btn,
+        [data-theme="light"] .submit-btn,
+        [data-theme="light"] .start-btn {
+            color: var(--text-color) !important;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 80px;
+            background: var(--toggle-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--toggle-color);
+            border-radius: 50px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 44px;
+            box-sizing: border-box;
+        }
+
+        .settings-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--toggle-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--toggle-color);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .settings-toggle:hover {
+            background: var(--btn-hover-bg);
+            border-color: var(--btn-hover-border);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle:hover {
+            background: var(--btn-hover-bg);
+            border-color: var(--btn-hover-border);
+            transform: translateY(-2px);
+        }
+
+        .theme-icon {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 70px 20px 20px 20px;
+            /* Added top padding for theme toggle */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            /* Full viewport height */
+            box-sizing: border-box;
+            /* Include padding in height calculation */
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            /* Full width */
+            max-width: 600px;
+            /* Maximum width for larger screens */
+            margin: 0 auto;
+        }
+
+        .container h1 {
+            color: var(--text-color);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            /* Responsive font size */
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .btn {
+            width: 100%;
+            /* Full width on mobile */
+            max-width: 400px;
+            /* Maximum width for larger screens */
+            padding: 15px 25px;
+            font-size: clamp(14px, 4vw, 16px);
+            /* Responsive font size */
+            border: 1px solid var(--btn-border);
+            background-color: transparent;
+            color: var(--text-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            word-wrap: break-word;
+            /* Handle long text */
+        }
+
+        .btn:hover {
+            background-color: var(--btn-hover-bg);
+            border-color: var(--btn-hover-border);
+        }
+
+        .btn.correct {
+            background-color: var(--correct-bg);
+            border-color: #4caf50;
+            color: var(--text-color);
+        }
+
+        .btn.incorrect {
+            background-color: var(--incorrect-bg);
+            border-color: #f44336;
+            color: var(--text-color);
+        }
+
+        .btn.selected {
+            background-color: var(--selected-bg);
+            /* Selected but not confirmed */
+            border-color: var(--selected-border);
+            color: var(--text-color);
+        }
+
+        .question {
+            font-size: clamp(16px, 4vw, 18px);
+            /* Responsive font size */
+            margin: 20px 10px;
+            text-align: center;
+            color: var(--text-color);
+            word-wrap: break-word;
+            /* Handle long questions */
+        }
+
+        .question-image {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid var(--btn-hover-border);
+        }
+
+        .pre-content {
+            background-color: var(--container-bg);
+            border: 1px solid var(--btn-hover-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: var(--text-color);
+            white-space: pre-wrap;
+            overflow-x: auto;
+            text-align: left;
+        }
+
+        .special-question {
+            background-color: var(--container-bg);
+            border: 1px solid var(--btn-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        .multiple-answers-note {
+            font-size: 14px;
+            color: var(--btn-border);
+            margin: 10px 0;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            /* Allow wrapping on small screens */
+            justify-content: center;
+            width: 100%;
+        }
+
+        .next-btn,
+        .back-btn,
+        .menu-btn,
+        .submit-btn,
+        .start-btn {
+            padding: 12px 20px;
+            font-size: clamp(12px, 3.5vw, 14px);
+            /* Responsive font size */
+            border: 1px solid var(--btn-hover-border);
+            background-color: transparent;
+            color: var(--text-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: none;
+            min-width: 100px;
+            /* Minimum button width */
+            text-align: center;
+        }
+
+        .submit-btn {
+            background-color: transparent;
+            border-color: var(--btn-border);
+            color: var(--text-color);
+        }
+
+        .next-btn:hover,
+        .back-btn:hover,
+        .menu-btn:hover,
+        .submit-btn:hover,
+        .start-btn:hover {
+            background-color: var(--btn-hover-bg);
+        }
+
+        .start-btn {
+            background-color: transparent;
+            border-color: var(--btn-border);
+            color: var(--text-color);
+        }
+
+        #choices,
+        #moduleChoices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            align-items: center;
+            padding: 0 10px;
+            /* Add some padding on small screens */
+            box-sizing: border-box;
+        }
+
+        /* Media Queries for different screen sizes */
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 70px 10px 10px 10px;
+                /* Keep top padding for theme toggle */
+            }
+
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .next-btn,
+            .back-btn,
+            .menu-btn,
+            .submit-btn,
+            .start-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+
+        /* Prevent zoom on input fields in iOS */
+        @media screen and (max-width: 768px) {
+
+            input,
+            select,
+            textarea {
+                font-size: 16px;
+            }
+        }
+
+        /* Add touch-friendly tap targets */
+        @media (hover: none) {
+
+            .btn,
+            .next-btn,
+            .back-btn,
+            .menu-btn,
+            .submit-btn,
+            .start-btn {
+                min-height: 44px;
+                /* Minimum touch target size */
+            }
+        }
+
+        /* Settings Modal */
+        .settings-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .settings-content {
+            background: var(--container-bg);
+            border: 1px solid var(--container-border);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .settings-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: var(--btn-hover-bg);
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--container-border);
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-label {
+            font-size: 16px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background-color: var(--container-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background-color: var(--btn-border);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--text-color);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(26px);
+        }
+
+        /* Light mode specific toggle colors */
+        [data-theme="light"] .toggle-switch {
+            background-color: #d1d5db;
+        }
+
+        [data-theme="light"] .toggle-switch.active {
+            background-color: #3b82f6;
+        }
+
+        [data-theme="light"] .toggle-slider {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .module-btn.selected {
+            background-color: var(--selected-bg);
+            border-color: var(--selected-border);
+            color: var(--text-color);
+        }
+    </style>
+</head>
+
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <button class="settings-toggle" onclick="openSettings()">
+        ⚙️
+    </button>
+
+    <!-- Settings Modal -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h3 class="settings-title">Settings</h3>
+                <button class="close-btn" onclick="closeSettings()">×</button>
+            </div>
+            <div class="setting-item">
+                <span class="setting-label">Shuffle Questions</span>
+                <div class="toggle-switch" id="shuffleQuestionsToggle" onclick="toggleSetting('shuffleQuestions')">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+            <div class="setting-item">
+                <span class="setting-label">Shuffle Choices</span>
+                <div class="toggle-switch" id="shuffleChoicesToggle" onclick="toggleSetting('shuffleChoices')">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="mainMenu">
+        <h1>E-Commerce Reviewer</h1>
+
+        <div id="moduleChoices">
+            <button class="btn module-btn" id="module1" onclick="toggleModuleSelection(1)">M1</button>
+            <button class="btn module-btn" id="module2" onclick="toggleModuleSelection(2)">M2</button>
+        </div>
+
+        <div class="navigation">
+            <button class="start-btn" id="startBtn" onclick="loadSelectedCheckpoints()"
+                style="display: none;">Start</button>
+        </div>
+    </div>
+
+    <div class="container" id="quizContainer" style="display: none;">
+        <div class="question" id="questionText"></div>
+        <div id="questionImage"></div>
+        <div id="preContent"></div>
+        <div id="multipleAnswersNote"></div>
+        <div id="choices"></div>
+        <div class="navigation">
+            <button class="back-btn" onclick="previousQuestion()">Previous Question</button>
+            <button class="menu-btn" onclick="showMainMenu()">Main Menu</button>
+            <button class="submit-btn" onclick="submitAnswer()">Submit Answer</button>
+            <button class="next-btn" onclick="nextQuestion()">Next Question</button>
+        </div>
+    </div>
+
+    <script>
+        // Theme management
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const themeIcon = document.querySelector('.theme-icon');
+
+            if (theme === 'light') {
+                themeIcon.textContent = '☀️';
+            } else {
+                themeIcon.textContent = '🌙';
+            }
+        }
+
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeTheme();
+            loadSettings();
+        });
+
+        let currentCheckpoint = null;
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let questionAnswered = false;
+        let selectedAnswers = [];
+
+        // Settings management
+        let settings = {
+            shuffleQuestions: false,
+            shuffleChoices: false
+        };
+
+        // Multi-checkpoint selection
+        let selectedCheckpoints = [];
+
+        function loadSettings() {
+            const savedSettings = localStorage.getItem('quizSettings');
+            if (savedSettings) {
+                settings = { ...settings, ...JSON.parse(savedSettings) };
+            }
+            updateSettingsUI();
+        }
+
+        function saveSettings() {
+            localStorage.setItem('quizSettings', JSON.stringify(settings));
+        }
+
+        function updateSettingsUI() {
+            const shuffleQuestionsToggle = document.getElementById('shuffleQuestionsToggle');
+            const shuffleChoicesToggle = document.getElementById('shuffleChoicesToggle');
+
+            if (settings.shuffleQuestions) {
+                shuffleQuestionsToggle.classList.add('active');
+            } else {
+                shuffleQuestionsToggle.classList.remove('active');
+            }
+
+            if (settings.shuffleChoices) {
+                shuffleChoicesToggle.classList.add('active');
+            } else {
+                shuffleChoicesToggle.classList.remove('active');
+            }
+        }
+
+        function openSettings() {
+            document.getElementById('settingsModal').style.display = 'flex';
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsModal').style.display = 'none';
+        }
+
+        function toggleSetting(settingName) {
+            settings[settingName] = !settings[settingName];
+            updateSettingsUI();
+            saveSettings();
+        }
+
+        // Shuffle array function
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function (event) {
+            const modal = document.getElementById('settingsModal');
+            if (event.target === modal) {
+                closeSettings();
+            }
+        });
+
+        // Multi-checkpoint selection functions
+        function toggleModuleSelection(moduleNumber) {
+            const moduleBtn = document.getElementById(`module${moduleNumber}`);
+            const startBtn = document.getElementById('startBtn');
+
+            // Check if this module is already selected
+            const isSelected = selectedCheckpoints.includes(moduleNumber);
+
+            if (isSelected) {
+                // Remove from selection
+                selectedCheckpoints = selectedCheckpoints.filter(num => num !== moduleNumber);
+                moduleBtn.classList.remove('selected');
+            } else {
+                // Add to selection
+                selectedCheckpoints.push(moduleNumber);
+                moduleBtn.classList.add('selected');
+            }
+
+            // Update start button visibility
+            if (selectedCheckpoints.length > 0) {
+                startBtn.style.display = 'block';
+            } else {
+                startBtn.style.display = 'none';
+            }
+
+            // If only one module is selected and user clicks it again, load it directly
+            if (selectedCheckpoints.length === 1 && !isSelected) {
+                // Set a timeout to allow for potential second selection
+                setTimeout(() => {
+                    if (selectedCheckpoints.length === 1) {
+                        // After a brief delay, if still only one selected, treat as single click
+                        // But don't auto-load, let user decide with Start button
+                    }
+                }, 300);
+            }
+        }
+
+        async function loadSelectedCheckpoints() {
+            if (selectedCheckpoints.length === 0) return;
+
+            try {
+                let allQuestions = [];
+
+                // Load all selected checkpoints
+                for (const checkpointNum of selectedCheckpoints) {
+                    const response = await fetch(`assets/json/checkpoint${checkpointNum}.json`);
+                    const questions = await response.json();
+
+                    // Add checkpoint identifier to each question for reference
+                    const questionsWithSource = questions.map(q => ({
+                        ...q,
+                        sourceCheckpoint: checkpointNum
+                    }));
+
+                    allQuestions = allQuestions.concat(questionsWithSource);
+                }
+
+                // Apply shuffle settings
+                if (settings.shuffleQuestions) {
+                    allQuestions = shuffleArray(allQuestions);
+                }
+
+                if (settings.shuffleChoices) {
+                    allQuestions = allQuestions.map(question => {
+                        if (question.choices && question.type !== 'special') {
+                            return {
+                                ...question,
+                                choices: shuffleArray(question.choices)
+                            };
+                        }
+                        return question;
+                    });
+                }
+
+                currentQuestions = allQuestions;
+                currentCheckpoint = 'combined'; // Special identifier for combined mode
+                currentQuestionIndex = 0;
+                questionAnswered = false;
+
+                // Clear module selections
+                const moduleButtons = document.querySelectorAll('.module-btn');
+                moduleButtons.forEach(btn => btn.classList.remove('selected'));
+                selectedCheckpoints = [];
+
+                document.getElementById('mainMenu').style.display = 'none';
+                document.getElementById('quizContainer').style.display = 'flex';
+
+                displayQuestion();
+            } catch (error) {
+                console.error('Error loading checkpoints:', error);
+            }
+        }
+
+        async function loadCheckpoint(number) {
+            try {
+                const response = await fetch(`assets/json/checkpoint${number}.json`);
+                let questions = await response.json();
+
+                // Apply shuffle settings
+                if (settings.shuffleQuestions) {
+                    questions = shuffleArray(questions);
+                }
+
+                if (settings.shuffleChoices) {
+                    questions = questions.map(question => {
+                        if (question.choices && question.type !== 'special') {
+                            return {
+                                ...question,
+                                choices: shuffleArray(question.choices)
+                            };
+                        }
+                        return question;
+                    });
+                }
+
+                currentQuestions = questions;
+                currentCheckpoint = number;
+                currentQuestionIndex = 0;
+                questionAnswered = false;
+
+                document.getElementById('mainMenu').style.display = 'none';
+                document.getElementById('quizContainer').style.display = 'flex';
+
+                displayQuestion();
+            } catch (error) {
+                console.error('Error loading checkpoint:', error);
+            }
+        }
+
+        function displayQuestion() {
+            const question = currentQuestions[currentQuestionIndex];
+            document.getElementById('questionText').textContent = question.question;
+
+            // Handle images
+            const imageContainer = document.getElementById('questionImage');
+            if (question.img) {
+                imageContainer.innerHTML = `<img src="${question.img}" alt="Question diagram" class="question-image">`;
+            } else {
+                imageContainer.innerHTML = '';
+            }
+
+            // Handle pre content (code blocks)
+            const preContainer = document.getElementById('preContent');
+            if (question.pre) {
+                preContainer.innerHTML = `<div class="pre-content">${question.pre}</div>`;
+            } else {
+                preContainer.innerHTML = '';
+            }
+
+            // Handle multiple answers note
+            const noteContainer = document.getElementById('multipleAnswersNote');
+            const isMultipleAnswer = Array.isArray(question.answer);
+            if (isMultipleAnswer) {
+                noteContainer.innerHTML = `<div class="multiple-answers-note">Select ${question.answer.length} answers</div>`;
+            } else {
+                noteContainer.innerHTML = '';
+            }
+
+            const choicesContainer = document.getElementById('choices');
+            choicesContainer.innerHTML = '';
+
+            // Handle special questions
+            if (question.type === 'special') {
+                choicesContainer.innerHTML = `<div class="special-question">
+                    <p><strong>Special Question:</strong> This is a matching or exhibit-based question.</p>
+                    <p>${question.answer}</p>
+                </div>`;
+                // For special questions, immediately show the next button
+                questionAnswered = true;
+                document.querySelector('.next-btn').style.display =
+                    currentQuestionIndex < currentQuestions.length - 1 ? 'block' : 'none';
+                document.querySelector('.submit-btn').style.display = 'none';
+            } else {
+                // Regular multiple choice questions
+                question.choices.forEach(choice => {
+                    const button = document.createElement('button');
+                    button.className = 'btn';
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(choice);
+                    choicesContainer.appendChild(button);
+                });
+
+                // For regular questions, hide next button initially
+                document.querySelector('.next-btn').style.display = 'none';
+                document.querySelector('.submit-btn').style.display = 'none';
+                questionAnswered = false;
+            }
+
+            // Reset selected answers
+            selectedAnswers = [];
+
+            // Show/hide navigation buttons (common for both types)
+            document.querySelector('.back-btn').style.display =
+                currentQuestionIndex > 0 ? 'block' : 'none';
+            document.querySelector('.menu-btn').style.display = 'block';
+        }
+
+        function checkAnswer(selectedAnswer) {
+            if (questionAnswered) return;
+
+            const question = currentQuestions[currentQuestionIndex];
+            const isMultipleAnswer = Array.isArray(question.answer);
+
+            if (isMultipleAnswer) {
+                const maxSelections = question.answer.length;
+                const answerIndex = selectedAnswers.indexOf(selectedAnswer);
+
+                if (answerIndex > -1) {
+                    // Remove from selected answers
+                    selectedAnswers.splice(answerIndex, 1);
+                } else {
+                    // Check if we've reached the maximum number of selections
+                    if (selectedAnswers.length >= maxSelections) {
+                        // Show a message and don't add more selections
+                        const noteContainer = document.getElementById('multipleAnswersNote');
+                        noteContainer.innerHTML = `<div class="multiple-answers-note">You can only select ${maxSelections} choices</div>`;
+                        return;
+                    }
+                    // Add to selected answers
+                    selectedAnswers.push(selectedAnswer);
+                }
+
+                // Update the note to show current selection count
+                const noteContainer = document.getElementById('multipleAnswersNote');
+                noteContainer.innerHTML = `<div class="multiple-answers-note">${selectedAnswers.length}/${maxSelections} selected</div>`;
+
+                // Update button styles
+                const buttons = document.querySelectorAll('#choices .btn');
+                buttons.forEach(button => {
+                    button.classList.remove('selected');
+                    if (selectedAnswers.includes(button.textContent)) {
+                        button.classList.add('selected');
+                    }
+                });
+
+                // Show submit button if at least one answer is selected
+                document.querySelector('.submit-btn').style.display =
+                    selectedAnswers.length > 0 ? 'block' : 'none';
+
+            } else {
+                // For single answer questions, submit immediately
+                selectedAnswers = [selectedAnswer];
+                submitAnswer();
+            }
+        }
+
+        function submitAnswer() {
+            if (questionAnswered || selectedAnswers.length === 0) return;
+
+            const question = currentQuestions[currentQuestionIndex];
+            const buttons = document.querySelectorAll('#choices .btn');
+            const correctAnswers = Array.isArray(question.answer) ? question.answer : [question.answer];
+
+            buttons.forEach(button => {
+                const buttonText = button.textContent;
+                const isCorrectAnswer = correctAnswers.includes(buttonText);
+                const isSelectedAnswer = selectedAnswers.includes(buttonText);
+
+                // Remove selection styling
+                button.classList.remove('selected');
+
+                if (isSelectedAnswer) {
+                    if (isCorrectAnswer) {
+                        button.classList.add('correct');
+                    } else {
+                        button.classList.add('incorrect');
+                    }
+                } else if (isCorrectAnswer) {
+                    // Show all correct answers
+                    button.classList.add('correct');
+                }
+            });
+
+            questionAnswered = true;
+            document.querySelector('.submit-btn').style.display = 'none';
+            document.querySelector('.next-btn').style.display =
+                currentQuestionIndex < currentQuestions.length - 1 ? 'block' : 'none';
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        function showMainMenu() {
+            document.getElementById('mainMenu').style.display = 'flex';
+            document.getElementById('quizContainer').style.display = 'none';
+            currentCheckpoint = null;
+            currentQuestions = [];
+            currentQuestionIndex = 0;
+
+            // Reset module selections and start button
+            const moduleButtons = document.querySelectorAll('.module-btn');
+            moduleButtons.forEach(btn => btn.classList.remove('selected'));
+            selectedCheckpoints = [];
+            document.getElementById('startBtn').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

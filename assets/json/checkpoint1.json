@@ -1,0 +1,199 @@
+[
+  {
+    "question": "A system administrator issues the apt-get upgrade command on a Linux operating system. What is the purpose of this command?",
+    "choices": [
+      "Every application installed will update itself to the latest version.",
+      "Operating system updates are downloaded and will be installed.",
+      "The remote repository of applications and dependencies will be updated to the latest version.",
+      "A specific application named upgrade will be installed."
+    ],
+    "answer": "Every application installed will update itself to the latest version."
+  },
+  {
+    "question": "A Linux system administrator is searching the passwd file for any username that starts with a digit. Which grep command should the administrator use?",
+    "choices": [
+      "grep ‘(0-9}’ /etc/passwd",
+      "grep ‘[0-9]’ /etc/passwd",
+      "grep ‘_[0-9]’ /etc/passwd",
+      "grep ‘^[0-9]’ /etc/passwd"
+    ],
+    "answer": "grep ‘^[0-9]’ /etc/passwd"
+  },
+  {
+    "question": "What is the output when the following code is entered into a Python program interpreter?",
+    "pre": "[1,2,4,5] + [3,6]",
+    "choices": [
+      "[1,2,3,4,5,6]",
+      "[12]+[9]",
+      "[21]",
+      "[1,2,4,5,3,6]"
+    ],
+    "answer": "[1,2,4,5,3,6]"
+  },
+  {
+    "question": "What is displayed after the following code is entered into a Python interpreter?",
+    "pre": "addition = 22 +10\nprint(addition)",
+    "choices": [
+      "nothing ( because the print command is wrong)",
+      "[22]+[10]",
+      "(syntaxerror)-…as there should not be a space between the numerical values",
+      "32"
+    ],
+    "answer": "32"
+  },
+  {
+    "question": "A Linux administrator is attempting to use a terminal to configure the network interface card on a computer. The administrator receives a message that the administrator does not have necessary permissions to perform the configuration. What should be done prior to the configuration command?",
+    "choices": [
+      "identify a different network interface",
+      "use a different user account",
+      "use the sudo command",
+      "change the chmod permissions on the network configuration file"
+    ],
+    "answer": "use the sudo command"
+  },
+  {
+    "question": "A network engineer needs to review the status of all network interfaces of a server running a Linux operating system. The engineer enters the command ifconfig -a. What is the resuit of this command?",
+    "choices": [
+      "All active interfaces will display information.",
+      "The ARP table of the computer will be displayed.",
+      "Both active and inactive interfaces will display information.",
+      "The host routing table will be displayed."
+    ],
+    "answer": "Both active and inactive interfaces will display information."
+  },
+  {
+    "question": "A system administrator attempts to determine what is causing a computer to perform slower than normal. The administrator issues the ps command. What is displayed by this command?",
+    "choices": [
+      "current RAM usage",
+      "current NIC status",
+      "active processes using CPU time",
+      "current HDD usage"
+    ],
+    "answer": "active processes using CPU time"
+  },
+  {
+    "question": "A user issues the Linux command ls -l myfile.sh to check the permission of the file myfile.sh.",
+    "pre": "devasc@labvm:~/Documents$ ls -l myfile.sh\n-rwxr-xr-- 1 self test 15 Mar 30 21:24 myfile.sh",
+    "choices": [
+      "Any user in the self group can read, modify, and execute the file.",
+      "The user with the user ID of self can modify the file.",
+      "The user with the user ID of devasc can modify the file.",
+      "All users can execute the file.",
+      "Any user in the test group can execute the file."
+    ],
+    "answer": [
+      "The user with the user ID of self can modify the file.",
+      "Any user in the test group can execute the file."
+    ]
+  },
+  {
+    "question": "Which Python command creates a conditional control structure?",
+    "choices": [
+      "def",
+      "delay",
+      "from",
+      "if"
+    ],
+    "answer": "if"
+  },
+  {
+    "question": "A user enters the commands as shown. What is the result after the mv command is entered?",
+    "pre": "devasc@labvm:~/Documents$ pwd\n/home/devasc/Documents\ndevasc@labvm:~/Documents$ mv myfile.sh ../Desktop/myfile2.sh",
+    "choices": [
+      "The file myfile.sh is copied to the /home/devasc/Desktop directory and renamed as myfile2.sh.",
+      "The file myfile.sh is copied to the /home/devasc/Desktop directory and replaces the file myfile2.sh.",
+      "The file myfile.sh is copied and renamed to myfile2.sh in the current directory.",
+      "The file myfile.sh is moved to the /home/devasc/Desktop directory and renamed as myfile2.sh."
+    ],
+    "answer": "The file myfile.sh is moved to the /home/devasc/Desktop directory and renamed as myfile2.sh."
+  },
+  {
+    "question": "A student new to Python is working in the interactive interpreter mode. The student issues the commands:",
+    "pre": ">>> ipAddress = {\"R1\":\"10.1.1.1\",\"R2\":\"10.2.2.1\",\"R3\":\"10.3.3.1\"}",
+    "choices": [
+      "list",
+      "array",
+      "tuple",
+      "dictionary"
+    ],
+    "answer": "dictionary"
+  },
+  {
+    "question": "A student new to Python is working in the interactive interpreter mode. The student issues the command:",
+    "pre": ">>> ipAddress = {\"R1\":\"10.1.1.1\",\"R2\":\"10.2.2.1\",\"R3\":\"10.3.3.1\"}",
+    "choices": [
+      "ipAddress{‘R2’}",
+      "ipAddress[‘R2’]",
+      "ipAddress[R2]",
+      "ipAddress{“R2”}"
+    ],
+    "answer": "ipAddress[‘R2’]"
+  },
+  {
+    "question": "A user issues a series of Linux commands as shown.",
+    "pre": "(omitted)$ pwd\n/home/devasc/labs/ansible/backups\n(omitted)$ cd ../..",
+    "choices": [
+      "/",
+      "/home",
+      "/home/devasc/",
+      "/home/devasc/labs",
+      "/home/devasc/labs/ansible"
+    ],
+    "answer": "/home/devasc/labs"
+  },
+  {
+    "question": "A student new to Python is working in the interactive interpreter mode. The student issues the commands:",
+    "pre": ">>> devicenames=[\"RT1\", \"RT2\", \"SW1\", \"SW2\"]\n>>> hostnames=devicenames + [\"RT3\", \"SW3\"]\n>>> del hostnames[3]\n>>> hostnames",
+    "choices": [
+      "[‘RT1’, ‘RT2’, ‘RT3’, ‘SW2, ‘SW3’]",
+      "[‘RT1’, ‘RT2’, ‘SW2’, ‘RT3’, ‘SW3’]",
+      "[‘RT1’, ‘RT2’, ‘SW1’, ‘RT3’, ‘SW3’]",
+      "[‘RT1’, ‘RT2’, ‘SW1’, ‘SW2’, ‘SW3’]"
+    ],
+    "answer": "[‘RT1’, ‘RT2’, ‘SW1’, ‘RT3’, ‘SW3’]"
+  },
+  {
+    "question": "A student is learning Python in the interactive interpreter mode. The student issues the commands:",
+    "pre": ">>> y=2\n>>> y*3\n6\n>>> 'Test'*y",
+    "choices": [
+      "‘Test2",
+      "‘Test6’",
+      "TypeError: A string type cannot be multiplied by an integer.",
+      "‘TestTest’",
+      "‘TestTestTestTestTestTest’"
+    ],
+    "answer": "‘TestTest’"
+  },
+  {
+    "question": "A student is learning Python and is reviewing a Python script as follows:",
+    "pre": "aclNum = int(input(\"What is the IPv4 ACL number? \"))\nif aclNum >= 1 and aclNum <= 99:\nprint(\"This is a standard IPv4 ACL.\")\nelif aclNum >=100 and aclNum <= 199:\nprint(\"This is an extended IPv4 ACL.\")\nelse:\nprint(\"This is not a standard or extended IPv4 ACL.\")",
+    "choices": [
+      "when the input is a float number",
+      "when the first print statement fails",
+      "when the input is a string",
+      "when the if statement is false"
+    ],
+    "answer": "when the if statement is false"
+  },
+  {
+    "question": "A user issues a Linux command and the result is shown:",
+    "pre": "total 40\ndrwxr-xr-x 2 devasc devasc 4096 Mar 30 21:25 Desktop\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Documents\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Downloads\ndrwxr-xr-x 5 devasc devasc 4096 Mar 30 21:21 labs\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Music\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Pictures\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Public\ndrwxr-xr-x 5 devasc devasc 4096 Mar 30 21:24 snap\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Templates\ndrwxr-xr-x 2 devasc devasc 4096 Apr 15 19:09 Videos\ndevasc@labvm:~$",
+    "choices": [
+      "ls -a",
+      "ls -l",
+      "ls",
+      "ls -lr"
+    ],
+    "answer": "ls -l"
+  },
+  {
+    "question": "A network engineer needs to review the status of all network interfaces of a server running a Linux operating system. The engineer enters the command ifconfig -a . What is the result of this command?",
+    "choices": [
+      "The host routing table will be displayed.",
+      "All active interfaces will display information.",
+      "Both active and inactive interfaces will display information.",
+      "The ARP table of the computer will be displayed."
+    ],
+    "answer": "Both active and inactive interfaces will display information."
+  }
+]

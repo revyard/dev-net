@@ -1,0 +1,136 @@
+[
+  {
+    "question": "What is network programmability?",
+    "choices": [
+      "the ability to easily monitor network devices using traditional network protocols",
+      "the ability to program network devices using repettive manual configuration via a terminal and command sets",
+      "the ability to configure, monitor, and react to events in the network in real time",
+      "the ability to configure virtualized networks and deploy virtualized services in real time"
+    ],
+    "answer": "the ability to configure, monitor, and react to events in the network in real time"
+  },
+  {
+    "question": "What is the purpose of Cisco DevNet?",
+    "choices": [
+      "to be the central resource for everything about networking at Cisco",
+      "to teach everyone about the different Cisco API offerings and how to use them",
+      "to teach specific coding courses such as advanced Python and implementing REST APIs",
+      "to be the central resource for advanced software developers and the use of Cisco APIs"
+    ],
+    "answer": "to teach everyone about the different Cisco API offerings and how to use them"
+  },
+  {
+    "question": "What are two benefits of using APIs and integrations between applications? (Choose two.)",
+    "choices": [
+      "Integrations are used to verify compatibility between different applications.",
+      "Integrations enable the applications to run a Docker instance using Hyper-V.",
+      "Integrations enable the applications to be installed on any operating system type.",
+      "Integrations are used to provide applications the ability to notify each other when a specific event happens.",
+      "Integrations enable the applications to request actions from each other."
+    ],
+    "answer": [
+      "Integrations are used to provide applications the ability to notify each other when a specific event happens.",
+      "Integrations enable the applications to request actions from each other."
+    ]
+  },
+  {
+    "question": "What is the contracted response time after a developer opens a case-based ticket with the DevNet support service?",
+    "choices": [
+      "one week",
+      "five business days",
+      "one hour",
+      "one business day"
+    ],
+    "answer": "one business day"
+  },
+  {
+    "question": "Which Cisco DevNet developer support option provides 1-on-1 support to the members of the Solution Partner program?",
+    "choices": [
+      "case-based ticket",
+      "community forum",
+      "knowledge base",
+      "chat with DevNet"
+    ],
+    "answer": "case-based ticket"
+  },
+  {
+    "question": "Which technology trend enables an industry shift towards automation, applications, and integrations?",
+    "choices": [
+      "smaler and faster CPUs",
+      "advanced API capabilities",
+      "increased storage and RAM",
+      "increased intenet connection bandwidth"
+    ],
+    "answer": "advanced API capabilities"
+  },
+  {
+    "question": "What resources are available in the Cisco DevNet sandboxes?",
+    "choices": [
+      "self-paced tutorials that cover a wide range of automation and integration topics",
+      "support for developer-related issues through the use of forums and live chats",
+      "a repository of sample code writen by developers",
+      "production-like development and code testing environments"
+    ],
+    "answer": "production-like development and code testing environments"
+  },
+  {
+    "question": "Which link is used from the Cisco DevNet Learning Labs to access the largest collections of labs?",
+    "choices": [
+      "Sections",
+      "Modules",
+      "Bookends",
+      "Tracks"
+    ],
+    "answer": "Tracks"
+  },
+  {
+    "question": "Which Cisco DevNet online resource provides use cases for network automation, including listing data and activating policies across domains?",
+    "choices": [
+      "Automation Exchange",
+      "DevNet Learning Labs",
+      "DevNet Sandbox",
+      "Code Exchange"
+    ],
+    "answer": "Automation Exchange"
+  },
+  {
+    "question": "What are two requirements when participating in the DevNet Learning Labs? (Choose two.)",
+    "choices": [
+      "The user must successfully log in with a DevNet account.",
+      "The user must have successfully passed the 200-901 DEVASC exam.",
+      "The user must have an active internet connection.",
+      "The user must have purchased the DevNet Learning Labs activation license.",
+      "The user must install a developer environment on a local computer."
+    ],
+    "answer": [
+      "The user must successfully log in with a DevNet account.",
+      "The user must have an active internet connection."
+    ]
+  },
+  {
+    "question": "What are three major areas that comprise DevNet? (Choose three.)",
+    "choices": [
+      "on-line training site for various technology vendors",
+      "interactive and collaborative developer community",
+      "integrated community forums",
+      "automation and programmability standards development area",
+      "providing support for website creation and maintenance",
+      "coordinated developer tools"
+    ],
+    "answer": [
+      "interactive and collaborative developer community",
+      "integrated community forums",
+      "coordinated developer tools"
+    ]
+  },
+  {
+    "question": "What resources are available in the Cisco DevNet Code Exchange?",
+    "choices": [
+      "a repository of sample code written by other developers",
+      "production-like development and code testing environments",
+      "support for developer-related issues using forums and live chats",
+      "self-paced tutorials that cover a wide range of automation and integration topics"
+    ],
+    "answer": "a repository of sample code written by other developers"
+  }
+]
