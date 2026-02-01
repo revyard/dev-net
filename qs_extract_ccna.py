@@ -112,19 +112,74 @@ def extract_quiz_data(html_content):
         question_data = {}
         question_data['question'] = question_text
         
+        # Look for images associated with this question
+        # Check question_tag's parent and its siblings for wp-caption divs or img tags
+        img_url = None
+        parent = question_tag.parent
+        
+        # First, check siblings of the question_tag within the same parent (e.g., div inside same <p>)
+        sibling = question_tag.find_next_sibling()
+        while sibling:
+            # Check for wp-caption div containing an image (often inside the same <p>)
+            if sibling.name == 'div' and sibling.get('class') and 'wp-caption' in ' '.join(sibling.get('class', [])):
+                img_tag = sibling.find('img')
+                if img_tag and img_tag.get('src'):
+                    img_url = img_tag.get('src')
+                    break
+            
+            # Check for standalone img tag
+            if sibling.name == 'img' and sibling.get('src'):
+                img_url = sibling.get('src')
+                break
+            
+            sibling = sibling.find_next_sibling()
+        
+        # If not found, check siblings of the parent element
+        if not img_url and parent:
+            sibling = parent.find_next_sibling()
+            while sibling:
+                # Stop if we hit the next question
+                if sibling.name == 'p':
+                    strong_or_b = sibling.find(['strong', 'b'])
+                    if strong_or_b and question_pattern.match(strong_or_b.get_text().strip()):
+                        break
+                
+                # Check for wp-caption div containing an image
+                if sibling.name == 'div' and sibling.get('class') and 'wp-caption' in ' '.join(sibling.get('class', [])):
+                    img_tag = sibling.find('img')
+                    if img_tag and img_tag.get('src'):
+                        img_url = img_tag.get('src')
+                        break
+                
+                # Check for standalone img tag
+                if sibling.name == 'img' and sibling.get('src'):
+                    img_url = sibling.get('src')
+                    break
+                
+                # Stop at ul (choices) or message_box (explanation)
+                if sibling.name == 'ul':
+                    break
+                if sibling.name == 'div' and sibling.get('class') and 'message_box' in ' '.join(sibling.get('class', [])):
+                    break
+                    
+                sibling = sibling.find_next_sibling()
+        
+        if img_url:
+            question_data['img'] = img_url
+        
         # Find the next ul element that contains the choices
         # Use find_next_sibling from the question tag's parent or the tag itself
-        current_element = question_tag.find_next_sibling()
-        if not current_element:
-            # If no sibling, try parent's next sibling
-            parent = question_tag.parent
+        next_tag = question_tag.find_next_sibling()
+        if not next_tag:
             if parent:
-                current_element = parent.find_next_sibling()
+                next_tag = parent.find_next_sibling()
         
         choices = []
         correct_answers = []
         pre_content = None  # Store any <pre> tag content
         
+        # Try to find choices in a <ul> tag
+        current_element = next_tag
         while current_element:
             if current_element.name == 'ul':
                 # Found the choices list
@@ -137,37 +192,62 @@ def extract_quiz_data(html_content):
                         choices.append(choice_text)
                         
                         # Check if this is a correct answer
-                        # Look for any span or strong tag with color styling (any color means it's the answer)
                         colored_tag = li.find(['span', 'strong'], style=lambda x: x and 'color:' in x)
                         if colored_tag:
                             correct_answers.append(choice_text)
-                        # Also check for li elements with class="correct_answer"
                         elif li.get('class') and 'correct_answer' in li.get('class'):
                             correct_answers.append(choice_text)
-                
                 break
-            elif current_element.name == 'p':
-                # Check if this is part of the current question or the next question
-                strong_or_b = current_element.find('strong') or current_element.find('b')
-                if strong_or_b:
-                    strong_text = strong_or_b.get_text().strip()
-                    # If it starts with a number followed by a dot, it's a new question
-                    if question_pattern.match(strong_text):
-                        break
+            elif current_element.name == 'p' and question_pattern.match(current_element.get_text().strip()):
+                break
             elif current_element.name == 'pre':
-                # Capture pre tag content with preserved line breaks
-                if not pre_content:  # Only capture the first pre tag
-                    # Get raw text and preserve line breaks, but clean up extra whitespace
+                if not pre_content:
                     raw_text = current_element.get_text()
-                    # Split by lines, strip each line, and rejoin with newlines
                     lines = [line.strip() for line in raw_text.split('\n') if line.strip()]
                     pre_content = '\n'.join(lines)
-            elif current_element.name in ['div', 'img', 'strong', 'b']:
-                # Skip these elements but continue looking for choices
-                pass
             
             current_element = current_element.find_next_sibling()
-        
+
+        # If no choices found in <ul>, look for <br> separated choices in the same parent (e.g., Q16)
+        if not choices:
+            # Look at siblings of the question_tag (including text nodes)
+            sibling = question_tag.next_sibling
+            temp_choices = []
+            while sibling:
+                # If we hit another question tag or a different block element that's not a choice
+                if sibling.name in ['p', 'div', 'hr'] and sibling.get_text().strip() and question_pattern.match(sibling.get_text().strip()):
+                    break
+                
+                # If it's a tag like span or strong with color, it might be the answer
+                if sibling.name in ['span', 'strong', 'b', 'i']:
+                    text = clean_text(sibling.get_text())
+                    if text:
+                        temp_choices.append(text)
+                        colored_tag = sibling if (sibling.get('style') and 'color:' in sibling.get('style')) else sibling.find(['span', 'strong'], style=lambda x: x and 'color:' in x)
+                        if colored_tag:
+                            correct_answers.append(text)
+                
+                # If it's a text node
+                elif isinstance(sibling, str) or sibling.name is None:
+                    text = clean_text(str(sibling))
+                    if text:
+                        temp_choices.append(text)
+                
+                # If we see a message box or explanation, stop
+                if sibling.name == 'div' and ('message_box' in (sibling.get('class') or []) or 'explanation' in sibling.get_text().lower()):
+                    break
+                    
+                sibling = sibling.next_sibling
+            
+            # Clean up temp_choices (filter out empty strings)
+            choices = [c for c in temp_choices if c and len(c) > 0]
+            # Since we collected pieces of text, we might need to regroup them. 
+            # But the logic above might be too aggressive. 
+            # In Q16, they are separated by <br>.
+            # Let's re-evaluate Q16 structure:
+            # @@<br /> /dev/null<br /> <span...>+</span><br /> –<br />
+            # The next_sibling of 16-strong is <br/>, then text "@@", then <br/>, etc.
+            
         # Add pre content if found
         if pre_content:
             question_data['pre'] = pre_content

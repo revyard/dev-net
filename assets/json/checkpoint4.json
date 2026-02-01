@@ -1,0 +1,165 @@
+[
+  {
+    "question": "1. A developer issues the Linux command pip3 freeze in an activated Python 3 virtual environment. What is the function that is provided by the command?",
+    "choices": [
+      "to output a list of installed Python packages",
+      "to lock the current virtual environment",
+      "to prepare the environment before installing a Python package",
+      "to deactivate the current virtual environment"
+    ],
+    "answer": "to output a list of installed Python packages"
+  },
+  {
+    "question": "2. What are two characteristics of the Git version control system? (Choose two.)",
+    "choices": [
+      "It is a local vcs.",
+      "It is a centralized VCS.",
+      "It is a distributed VCS.",
+      "It is Microsoft proprietary.",
+      "It is Cisco proprietary.",
+      "It is open source"
+    ],
+    "answer": [
+      "It is a distributed VCS.",
+      "It is open source"
+    ]
+  },
+  {
+    "question": "3. Match the Lean term with a description.",
+    "img": "https://itexamanswers.net/wp-content/uploads/2021/01/2021-11-24_203817.jpg",
+    "type": "special",
+    "choices": [],
+    "answer": "See image for the answer"
+  },
+  {
+    "question": "4. What characteristic describes a formal code review?",
+    "choices": [
+      "Code is automatically sent for review by source code management systems once it is checked in.",
+      "The entire code base is reviewed in a series of meetings.",
+      "It utilizes a peer code review tool to identify code that needs retesting.",
+      "It provides direct interaction between the review team and the code author."
+    ],
+    "answer": "The entire code base is reviewed in a series of meetings."
+  },
+  {
+    "question": "5. Which fundamental Lean principle forms the basis from which all other Lean principles flow?",
+    "choices": [
+      "build integrity in",
+      "eliminate waste",
+      "deliver as fast as possible",
+      "amplify learning"
+    ],
+    "answer": "eliminate waste"
+  },
+  {
+    "question": "6. When a unified diff file is being reviewed, which symbol is used to indicate that a line has been added?",
+    "choices": [
+      "/dev/null",
+      "@@",
+      "+"
+    ],
+    "answer": "+"
+  },
+  {
+    "question": "7. What special characters are used to enclose JSON objects?",
+    "choices": [
+      "forward slash /",
+      "square brackets []",
+      "curly braces {}",
+      "parenthesis ()"
+    ],
+    "answer": "curly braces {}"
+  },
+  {
+    "question": "8. What are two features of the formal code review? (Choose two.)",
+    "choices": [
+      "For a quicker turnaround, it involves only one reviewer",
+      "It involves the developer going through code with the reviewer line-by-line.",
+      "It promotes discussion among all of the reviewers.",
+      "It allows the developer to make changes on the spot.",
+      "It involves a review of the entire code base in a series of meetings."
+    ],
+    "answer": [
+      "It promotes discussion among all of the reviewers.",
+      "It involves a review of the entire code base in a series of meetings."
+    ]
+  },
+  {
+    "question": "9. Which statement describes the Waterfall methodology of software development?",
+    "choices": [
+      "Process tasks are broken up into time-boxed iterations called sprints.",
+      "Each step in the process must be completed before the next step starts",
+      "It emphasizes elimination of wasted effort and maximizes customer value.",
+      "Multiple steps in the process are started simultaneously."
+    ],
+    "answer": "Each step in the process must be completed before the next step starts"
+  },
+  {
+    "question": "10. What is clean code?",
+    "choices": [
+      "code that has no reviewer comments",
+      "code that has passed functional testing",
+      "code that is easy to read and understand",
+      "code that performs a discrete task"
+    ],
+    "answer": "code that is easy to read and understand"
+  },
+  {
+    "question": "11. Match the Git command with its function.",
+    "img": "https://itexamanswers.net/wp-content/uploads/2021/01/2021-11-24_202807.jpg",
+    "type": "special",
+    "choices": [],
+    "answer": "See image for the answer"
+  },
+  {
+    "question": "12. What is the role of the view component in the Model-View-Controller (MVC) flow?",
+    "choices": [
+      "It accepts selected data and displays the visual representation to the user.",
+      "It accepts the input and applies the required rules to format the data.",
+      "It requests user input and manipulates it to fit the format for the model.",
+      "It manages the data, logic and rules of the application."
+    ],
+    "answer": "It accepts selected data and displays the visual representation to the user."
+  },
+  {
+    "question": "13. A developer is constructing some functions in Python. When is a function referred to as a module in Python?",
+    "choices": [
+      "when the function is declared during the execution of a Python program",
+      "when the function is initiated during the execution of a Python program",
+      "when the function is packaged in a single Python file",
+      "when the function is used for the first time"
+    ],
+    "answer": "when the function is packaged in a single Python file"
+  },
+  {
+    "question": "14. A student is learning Python using the interactive interpreter mode. The student issues these commands:",
+    "pre": ">>> class Uri():\n... def_init__(self, host, prot):\n... self.host = host\n... self.prot = prot\n... self.url = self.prot + \"://\" + self.host\n>>>",
+    "choices": [
+      ">>> url2 = Url(URL, ‘http://’, ‘www.cisco.com’)",
+      ">>> url2 = Url(‘http’, ‘://’, ‘www.cisco.com’)",
+      ">>> url2 = Url(‘www.cisco.com’, ‘http’)",
+      ">>> url2 = Url(‘http’, ‘www.cisco.com’)"
+    ],
+    "answer": ">>> url2 = Url(‘www.cisco.com’, ‘http’)"
+  },
+  {
+    "question": "15. A developer issues a Linux command python3 -m venv devenv . What is the developer trying to achieve?",
+    "choices": [
+      "to activate the Python 3 virtual environment named devenv",
+      "to enter the Python 3 virtual environment named veny using the devnet tool sets",
+      "to install the devnet tool sets in the Python 3 virtual environment named veny",
+      "to create a Python 3 virtual environment named devenv"
+    ],
+    "answer": "to create a Python 3 virtual environment named devenv"
+  },
+  {
+    "question": "16. When a unified .diff file is being reviewed, which symbol is used to indicate that a line has been added?",
+    "choices": [
+      "@@",
+      "/dev/null",
+      "+",
+      "–"
+    ],
+    "answer": "+"
+  }
+]
