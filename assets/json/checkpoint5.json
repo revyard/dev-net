@@ -2,9 +2,13 @@
   {
     "question": "1. Refer to the exhibit. A network administrator is using a Python script to test a REST API request. The traceback message indicates that there is an error in the URI. What is a possible issue?",
     "img": "https://itexamanswers.net/wp-content/uploads/2021/01/2021-01-17_171558.jpg",
-    "type": "special",
-    "choices": [],
-    "answer": "See image for the answer"
+    "choices": [
+      "The protocol is wrong.",
+      "The query component is missing.",
+      "The destination host address is wrong.",
+      "The SSL certificate is invalid."
+    ],
+    "answer": "The destination host address is wrong."
   },
   {
     "question": "2. Match the RESTful API method to CRUD function.",
@@ -26,9 +30,13 @@
   {
     "question": "4. Refer to the exhibit. A network administrator is using a Python script to send a REST API request. What is the purpose of the line of code resp = requests.get(url, verify = False) ?",
     "img": "https://itexamanswers.net/wp-content/uploads/2021/01/2021-01-17_192016.jpg",
-    "type": "special",
-    "choices": [],
-    "answer": "See image for the answer"
+    "choices": [
+      "It bypasses the certificate validation check.",
+      "It tests the function of the Python requests library",
+      "It omits the sending URL in the response.",
+      "It skips the URL verification step and tests the resource path."
+    ],
+    "answer": "It bypasses the certificate validation check."
   },
   {
     "question": "5. A client is sending a REST API request to a web server. The request includes the need for data compression. Which three values are acceptable for the Accept-Encoding request header? (Choose three.)",
